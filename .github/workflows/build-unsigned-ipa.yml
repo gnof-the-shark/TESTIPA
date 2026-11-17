@@ -1,4 +1,4 @@
-name: Build Unsigned iOS IPA
+name: Build Signed iOS IPA (macOS GUI / VNC + 2FA)
 
 on:
   workflow_dispatch:
@@ -9,30 +9,51 @@ on:
         default: 'IPAFORGE'
 
 jobs:
-  build-unsigned-ipa:
-    name: Compiler .ipa non signée sur macOS
+  build-ipa-vnc:
+    name: Interface graphique macOS (Xcode + Apple ID gratuit 7j)
     runs-on: macos-latest
 
     steps:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
 
-      - name: Sélectionner Xcode
+      - name: Installer XcodeGen & bore (tunnel VNC sans compte)
         run: |
-          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-          xcodebuild -version
-
-      - name: Installer XcodeGen si absent
-        run: |
-          if ! command -v xcodegen &> /dev/null; then
-            brew install xcodegen
-          fi
-
-      - name: Générer le projet .xcodeproj
-        run: |
+          if ! command -v xcodegen &> /dev/null; then brew install xcodegen; fi
+          if ! command -v bore &> /dev/null; then brew install bore-cli; fi
           xcodegen generate --spec project.yml
 
-      - name: Compiler l'application iOS sans signature
+      - name: Activer le partage d'écran macOS (VNC) et ouvrir Xcode
+        env:
+          VNC_PASSWORD: ${{ secrets.VNC_PASSWORD || 'IpaForge2026!' }}
+        run: |
+          sudo dscl . -passwd /Users/runner "$VNC_PASSWORD"
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+            -activate -configure -allowAccessFor -allUsers -privs -all \
+            -clientopts -setvnclegacy -vnclegacy yes -setvncpw -vncpw "$VNC_PASSWORD" -restart -agent
+
+          cat << 'CMD' > "$HOME/Desktop/Terminer_et_Compiler.command"
+          #!/bin/bash
+          touch /tmp/continue_build
+          echo "Compilation relancée ! Vous pouvez fermer cette fenêtre."
+          CMD
+          chmod +x "$HOME/Desktop/Terminer_et_Compiler.command"
+
+          open "IPAFORGE.xcodeproj"
+          bore local 5900 --to bore.pub > /tmp/bore.log 2>&1 &
+          sleep 4
+          echo "========================================================"
+          echo "CONNECTEZ-VOUS EN VNC (ex: RealVNC Viewer sur Windows) :"
+          grep -o 'bore.pub:[0-9]*' /tmp/bore.log | head -n 1
+          echo "Mot de passe VNC : (secret VNC_PASSWORD ou IpaForge2026!)"
+          echo "1. Dans Xcode -> Settings -> Accounts : connectez votre Apple ID + 2FA"
+          echo "2. Dans Signing & Capabilities : sélectionnez votre Team (Personal Team)"
+          echo "3. Double-cliquez sur Terminer_et_Compiler.command sur le Bureau"
+          echo "========================================================"
+
+          while [ ! -f /tmp/continue_build ]; do sleep 5; done
+
+      - name: Compiler et empaqueter l'IPA signée 7 jours
         run: |
           xcodebuild \
             -project "IPAFORGE.xcodeproj" \
@@ -40,22 +61,16 @@ jobs:
             -configuration Release \
             -sdk iphoneos \
             -derivedDataPath build \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
-            AD_HOC_CODE_SIGNING_ALLOWED=YES \
+            -allowProvisioningUpdates \
             clean build
 
-      - name: Empaqueter le fichier .ipa non signé
-        run: |
           mkdir -p Payload
           cp -R "build/Build/Products/Release-iphoneos/IPAFORGE.app" Payload/
-          zip -qry "IPAFORGE-unsigned.ipa" Payload
-          ls -lh "IPAFORGE-unsigned.ipa"
+          zip -qry "IPAFORGE-signed-7d.ipa" Payload
 
-      - name: Publier l'artefact .ipa
+      - name: Publier l'artefact .ipa signée
         uses: actions/upload-artifact@v4
         with:
-          name: IPAFORGE-unsigned-ipa
-          path: IPAFORGE-unsigned.ipa
+          name: IPAFORGE-signed-7d-ipa
+          path: IPAFORGE-signed-7d.ipa
           retention-days: 14
