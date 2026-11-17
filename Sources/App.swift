@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct IPAFORGEApp: App {
+struct IPATESTApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
