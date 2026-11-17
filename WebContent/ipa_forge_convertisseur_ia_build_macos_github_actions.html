@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPA Forge — Convertisseur IA &amp; Build macOS GitHub Actions</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #090d16;
+      color: #e2e8f0;
+    }
+    .drop-active {
+      border-color: #38bdf8 !important;
+      background-color: rgba(56, 189, 248, 0.08) !important;
+    }
+    pre::-webkit-scrollbar,
+    .scroll-thin::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    pre::-webkit-scrollbar-thumb,
+    .scroll-thin::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20 shrink-0">
+          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <h1 class="text-base sm:text-lg font-semibold tracking-tight text-white truncate">IPA Forge</h1>
+            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-sky-500/10 text-sky-400 border border-sky-500/20">
+              macOS GitHub Actions
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 truncate">Déposez vos fichiers → Conversion IA → Compilation .ipa non signée</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="btn-load-demo" type="button" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+          Charger un exemple HTML
+        </button>
+        <button id="btn-download-zip" type="button" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span class="hidden sm:inline">Exporter Projet (.zip)</span>
+          <span class="sm:hidden">.zip</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+  <!-- Main Grid -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Left Column: Dropzone, Config, AI, GitHub Actions -->
+    <section class="lg:col-span-5 flex flex-col gap-5">
+      <!-- 1. File Dropzone -->
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 sm:p-5">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 text-xs flex items-center justify-center font-bold">1</span>
+            Déposer vos fichiers sources
+          </h2>
+          <button id="btn-clear-files" type="button" class="text-xs text-slate-400 hover:text-rose-400 transition hidden">
+            Tout effacer
+          </button>
+        </div>
+
+        <div id="dropzone" tabindex="0" role="button" aria-label="Zone de dépôt de fichiers"
+             class="border-2 border-dashed border-slate-700 hover:border-sky-500/60 rounded-xl p-6 text-center cursor-pointer transition bg-slate-950/50">
+          <input id="file-input" type="file" multiple class="hidden" accept=".html,.htm,.css,.js,.ts,.jsx,.tsx,.json,.swift,.py,.txt,.md,.svg,.png,.jpg,.jpeg" />
+          <div class="w-11 h-11 rounded-full bg-slate-800/80 mx-auto mb-3 flex items-center justify-center text-sky-400">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+          </div>
+          <p class="text-sm font-medium text-slate-200">Glissez-déposez vos fichiers ici</p>
+          <p class="text-xs text-slate-400 mt-1">HTML, CSS, JS, Swift, JSON, images… ou cliquez pour parcourir</p>
+        </div>
+
+        <!-- Uploaded files list -->
+        <ul id="file-list" class="mt-3 space-y-2 max-h-48 overflow-y-auto scroll-thin"></ul>
+      </div>
+
+      <!-- 2. App & AI Conversion Settings -->
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4">
+        <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+          <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 text-xs flex items-center justify-center font-bold">2</span>
+          Configuration iOS &amp; Conversion IA
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="app-name" class="block text-xs font-medium text-slate-400 mb-1">Nom de l'app</label>
+            <input id="app-name" type="text" value="MonAppWeb" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-sky-500" />
+            <p class="text-[11px] text-slate-500 mt-1">Nom court sans espaces ni accents (ex: MonAppWeb).</p>
+          </div>
+          <div>
+            <label for="bundle-id" class="block text-xs font-medium text-slate-400 mb-1">Bundle Identifier</label>
+            <input id="bundle-id" type="text" value="com.ipaforge.monapp" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-sm font-mono text-white focus:outline-none focus:border-sky-500" />
+            <p class="text-[11px] text-slate-500 mt-1">Format domaine inversé unique : com.prenom.monapp</p>
+          </div>
+          <div>
+            <label for="app-version" class="block text-xs font-medium text-slate-400 mb-1">Version</label>
+            <input id="app-version" type="text" value="1.0.0" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-sm font-mono text-white focus:outline-none focus:border-sky-500" />
+          </div>
+          <div>
+            <label for="ios-target" class="block text-xs font-medium text-slate-400 mb-1">iOS minimum</label>
+            <select id="ios-target" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-sky-500">
+              <option value="15.0">iOS 15.0</option>
+              <option value="16.0" selected>iOS 16.0</option>
+              <option value="17.0">iOS 17.0</option>
+              <option value="18.0">iOS 18.0</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Conversion Strategy -->
+        <div>
+          <label for="conversion-mode" class="block text-xs font-medium text-slate-400 mb-1">Mode de conversion du code</label>
+          <select id="conversion-mode" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-sky-500">
+            <option value="hybrid">Hybride intelligent (WKWebView + adaptation iOS)</option>
+            <option value="swiftui-ai">Transpilation IA vers SwiftUI natif (si possible)</option>
+            <option value="raw-swift">Projet Swift existant (générer XcodeGen + Workflow)</option>
+          </select>
+        </div>
+
+        <!-- Optional AI Provider -->
+        <div class="pt-2 border-t border-slate-800/80 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-slate-300">Moteur IA (optionnel pour transpilation avancée)</span>
+            <span id="ai-badge" class="text-[11px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">Mode local prêt</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <select id="ai-provider" class="px-2.5 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-sky-500">
+              <option value="local">Convertisseur intégré (sans clé)</option>
+              <option value="openai">OpenAI (gpt-4o-mini)</option>
+              <option value="gemini">Google Gemini (gemini-2.5-flash)</option>
+            </select>
+            <input id="ai-api-key" type="password" placeholder="Clé API (optionnel)" class="sm:col-span-2 px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500" />
+          </div>
+          <p class="text-[11px] text-slate-500">Laissez « Convertisseur intégré » sans clé API pour empaqueter votre HTML tel quel, ou choisissez OpenAI / Gemini avec votre clé pour convertir en SwiftUI natif.</p>
+          <div>
+            <label for="ai-prompt" class="block text-xs font-medium text-slate-400 mb-1">Instructions pour l'IA (optionnel)</label>
+            <input id="ai-prompt" type="text" placeholder="Ex: Ajouter un thème sombre natif et gérer les zones sûres iPhone..." class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500" />
+          </div>
+        </div>
+
+        <button id="btn-convert" type="button" class="w-full py-2.5 px-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Analyser &amp; Convertir le projet iOS
+        </button>
+      </div>
+
+      <!-- 3. GitHub Actions macOS Build -->
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 text-xs flex items-center justify-center font-bold">3</span>
+            Compilation macOS via GitHub Actions
+          </h2>
+          <label class="inline-flex items-center gap-1.5 cursor-pointer text-xs text-slate-300">
+            <input id="sim-mode" type="checkbox" class="rounded border-slate-700 bg-slate-950 text-sky-500 focus:ring-sky-500" checked />
+            <span>Mode démo</span>
+          </label>
+        </div>
+
+        <details class="rounded-xl border border-slate-800 bg-slate-950/70 p-3 text-xs text-slate-300">
+          <summary class="cursor-pointer font-medium text-sky-400 select-none">Comment remplir les champs GitHub Actions ?</summary>
+          <ul class="mt-2.5 space-y-1.5 text-[11px] text-slate-400 list-disc pl-4 leading-relaxed">
+            <li><strong class="text-slate-200">Mode démo :</strong> cochez pour simuler la compilation localement. Décochez pour compiler réellement sur les serveurs <code class="text-sky-300">macos-latest</code> de GitHub.</li>
+            <li><strong class="text-slate-200">Dépôt GitHub :</strong> créez un dépôt vide sur GitHub et indiquez <code class="text-sky-300">votre-pseudo/nom-du-repo</code> (ex: <code class="text-slate-300">alex/mon-app-ios</code>).</li>
+            <li><strong class="text-slate-200">Branche :</strong> généralement <code class="text-sky-300">main</code> (vérifiez le nom de la branche par défaut de votre dépôt).</li>
+            <li><strong class="text-slate-200">GitHub Token (PAT) :</strong> allez dans <em>GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)</em>, générez un token en cochant les cases <code class="text-sky-300">repo</code> et <code class="text-sky-300">workflow</code>, puis collez-le ici.</li>
+          </ul>
+        </details>
+
+        <div id="github-fields" class="space-y-3 opacity-60 transition">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="gh-repo" class="block text-xs font-medium text-slate-400 mb-1">Dépôt GitHub (owner/repo)</label>
+              <input id="gh-repo" type="text" placeholder="monuser/mon-app-ios" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-sky-500" />
+            </div>
+            <div>
+              <label for="gh-branch" class="block text-xs font-medium text-slate-400 mb-1">Branche</label>
+              <input id="gh-branch" type="text" value="main" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-white focus:outline-none focus:border-sky-500" />
+            </div>
+          </div>
+          <div>
+            <label for="gh-token" class="block text-xs font-medium text-slate-400 mb-1">GitHub Token (PAT avec droits <code>repo</code> &amp; <code>workflow</code>)</label>
+            <input id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-sky-500" />
+          </div>
+        </div>
+
+        <button id="btn-build-ipa" type="button" class="w-full py-2.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Lancer le build macOS (.ipa non signée)
+        </button>
+
+        <!-- Build Result Card -->
+        <div id="ipa-result-card" class="hidden rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3.5 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
+              <span id="ipa-filename" class="text-xs font-mono font-semibold text-emerald-300 truncate">MonAppWeb-unsigned.ipa</span>
+            </div>
+            <span class="text-[11px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 shrink-0">Non signée</span>
+          </div>
+          <p id="ipa-meta" class="text-xs text-slate-300">Prête pour sideloading (AltStore, SideStore, TrollStore, Sideloadly).</p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <button id="btn-download-ipa" type="button" class="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold transition">
+              Télécharger .ipa
+            </button>
+            <a id="link-gh-run" href="#pipeline" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition hidden" target="_blank" rel="noopener">
+              Voir sur GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Pipeline Progress, Code Inspector, Logs -->
+    <section class="lg:col-span-7 flex flex-col gap-5">
+      <!-- Pipeline Steps -->
+      <div id="pipeline" class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 sm:p-5">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-sm font-semibold text-white">Pipeline de compilation macOS</h2>
+          <span id="pipeline-status-badge" class="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-medium">En attente</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+          <div data-step="0" class="step-card p-3 rounded-xl border border-slate-800 bg-slate-950/60">
+            <div class="text-[11px] font-medium text-slate-400">Étape 1</div>
+            <div class="text-xs font-semibold text-slate-200 mt-0.5">Fichiers reçus</div>
+            <div class="step-state text-[11px] text-slate-500 mt-1">En attente</div>
+          </div>
+          <div data-step="1" class="step-card p-3 rounded-xl border border-slate-800 bg-slate-950/60">
+            <div class="text-[11px] font-medium text-slate-400">Étape 2</div>
+            <div class="text-xs font-semibold text-slate-200 mt-0.5">Conversion IA</div>
+            <div class="step-state text-[11px] text-slate-500 mt-1">En attente</div>
+          </div>
+          <div data-step="2" class="step-card p-3 rounded-xl border border-slate-800 bg-slate-950/60">
+            <div class="text-[11px] font-medium text-slate-400">Étape 3</div>
+            <div class="text-xs font-semibold text-slate-200 mt-0.5">Push GitHub</div>
+            <div class="step-state text-[11px] text-slate-500 mt-1">En attente</div>
+          </div>
+          <div data-step="3" class="step-card p-3 rounded-xl border border-slate-800 bg-slate-950/60">
+            <div class="text-[11px] font-medium text-slate-400">Étape 4</div>
+            <div class="text-xs font-semibold text-slate-200 mt-0.5">Runner macOS</div>
+            <div class="step-state text-[11px] text-slate-500 mt-1">En attente</div>
+          </div>
+          <div data-step="4" class="step-card p-3 rounded-xl border border-slate-800 bg-slate-950/60 col-span-2 sm:col-span-1">
+            <div class="text-[11px] font-medium text-slate-400">Étape 5</div>
+            <div class="text-xs font-semibold text-slate-200 mt-0.5">Package .ipa</div>
+            <div class="step-state text-[11px] text-slate-500 mt-1">En attente</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Generated Project & Code Viewer -->
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl flex flex-col overflow-hidden flex-1 min-h-[420px]">
+        <div class="border-b border-slate-800 px-4 pt-3 flex items-center justify-between gap-2 flex-wrap">
+          <div class="flex items-center gap-1 overflow-x-auto pb-2 sm:pb-0" id="code-tabs">
+            <button type="button" data-tab="workflow" class="tab-btn px-3 py-2 text-xs font-medium border-b-2 border-sky-400 text-sky-400 whitespace-nowrap">
+              build-unsigned-ipa.yml
+            </button>
+            <button type="button" data-tab="project" class="tab-btn px-3 py-2 text-xs font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
+              project.yml
+            </button>
+            <button type="button" data-tab="swift" class="tab-btn px-3 py-2 text-xs font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
+              ContentView.swift
+            </button>
+            <button type="button" data-tab="app" class="tab-btn px-3 py-2 text-xs font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
+              App.swift
+            </button>
+            <button type="button" data-tab="logs" class="tab-btn px-3 py-2 text-xs font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
+              Journal d'exécution
+            </button>
+          </div>
+          <button id="btn-copy-code" type="button" class="mb-2 sm:mb-0 px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 transition">
+            Copier
+          </button>
+        </div>
+
+        <div class="flex-1 bg-slate-950 relative overflow-hidden flex flex-col">
+          <pre id="code-viewer" class="flex-1 p-4 text-xs font-mono text-slate-300 overflow-auto leading-relaxed"></pre>
+          <div id="logs-viewer" class="hidden flex-1 p-4 text-xs font-mono text-slate-300 overflow-auto space-y-1.5"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      files: [],
+      generated: {
+        workflow: '',
+        project: '',
+        swift: '',
+        app: '',
+        infoPlist: '',
+      },
+      activeTab: 'workflow',
+      logs: [],
+      lastRunUrl: '',
+      lastArtifactUrl: '',
+      demoIpaBlob: null,
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function showToast(msg, type = 'info') {
+      const container = $('toast-container');
+      const colors = {
+        info: 'bg-slate-800 border-slate-700 text-slate-100',
+        success: 'bg-emerald-950/90 border-emerald-500/40 text-emerald-200',
+        error: 'bg-rose-950/90 border-rose-500/40 text-rose-200',
+        warn: 'bg-amber-950/90 border-amber-500/40 text-amber-200',
+      };
+      const el = document.createElement('div');
+      el.className = `pointer-events-auto px-4 py-3 rounded-xl border text-xs font-medium shadow-xl transition ${colors[type] || colors.info}`;
+      el.textContent = msg;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.remove();
+      }, 4200);
+    }
+
+    function addLog(msg, level = 'info') {
+      const now = new Date().toLocaleTimeString('fr-FR', { hour12: false });
+      state.logs.push({ time: now, msg, level });
+      renderLogs();
+    }
+
+    function renderLogs() {
+      const box = $('logs-viewer');
+      box.innerHTML = '';
+      if (state.logs.length === 0) {
+        box.innerHTML = '<div class="text-slate-500">Aucun événement enregistré pour le moment.</div>';
+        return;
+      }
+      state.logs.forEach((entry) => {
+        const line = document.createElement('div');
+        const color =
+          entry.level === 'success' ? 'text-emerald-400' :
+          entry.level === 'error' ? 'text-rose-400' :
+          entry.level === 'warn' ? 'text-amber-400' : 'text-slate-300';
+        line.className = 'flex gap-2';
+        line.innerHTML = `<span class="text-slate-600 shrink-0">[${entry.time}]</span><span class="${color}"></span>`;
+        line.querySelector('span:last-child').textContent = entry.msg;
+        box.appendChild(line);
+      });
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function setStepState(stepIdx, status, label) {
+      const card = document.querySelector(`.step-card[data-step="${stepIdx}"]`);
+      if (!card) return;
+      const stateEl = card.querySelector('.step-state');
+      card.classList.remove('border-slate-800', 'border-sky-500/60', 'border-emerald-500/60', 'border-rose-500/60', 'bg-sky-500/5', 'bg-emerald-500/5');
+      stateEl.classList.remove('text-slate-500', 'text-sky-400', 'text-emerald-400', 'text-rose-400');
+
+      if (status === 'active') {
+        card.classList.add('border-sky-500/60', 'bg-sky-500/5');
+        stateEl.classList.add('text-sky-400');
+      } else if (status === 'done') {
+        card.classList.add('border-emerald-500/60', 'bg-emerald-500/5');
+        stateEl.classList.add('text-emerald-400');
+      } else if (status === 'error') {
+        card.classList.add('border-rose-500/60');
+        stateEl.classList.add('text-rose-400');
+      } else {
+        card.classList.add('border-slate-800');
+        stateEl.classList.add('text-slate-500');
+      }
+      stateEl.textContent = label;
+    }
+
+    function sanitizeAppName(raw) {
+      const cleaned = (raw || 'MonAppWeb').replace(/[^a-zA-Z0-9]/g, '');
+      return cleaned || 'MonAppWeb';
+    }
+
+    function generateWorkflowYaml(appName) {
+      return `name: Build Unsigned iOS IPA
+
+on:
+  workflow_dispatch:
+    inputs:
+      app_name:
+        description: 'Nom de l application'
+        required: false
+        default: '${appName}'
+
+jobs:
+  build-unsigned-ipa:
+    name: Compiler .ipa non signée sur macOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Sélectionner Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+
+      - name: Installer XcodeGen si absent
+        run: |
+          if ! command -v xcodegen &> /dev/null; then
+            brew install xcodegen
+          fi
+
+      - name: Générer le projet .xcodeproj
+        run: |
+          xcodegen generate --spec project.yml
+
+      - name: Compiler l'application iOS sans signature
+        run: |
+          xcodebuild \\
+            -project "${appName}.xcodeproj" \\
+            -scheme "${appName}" \\
+            -configuration Release \\
+            -sdk iphoneos \\
+            -derivedDataPath build \\
+            CODE_SIGN_IDENTITY="" \\
+            CODE_SIGNING_REQUIRED=NO \\
+            CODE_SIGNING_ALLOWED=NO \\
+            AD_HOC_CODE_SIGNING_ALLOWED=YES \\
+            clean build
+
+      - name: Empaqueter le fichier .ipa non signé
+        run: |
+          mkdir -p Payload
+          cp -R "build/Build/Products/Release-iphoneos/${appName}.app" Payload/
+          zip -qry "${appName}-unsigned.ipa" Payload
+          ls -lh "${appName}-unsigned.ipa"
+
+      - name: Publier l'artefact .ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${appName}-unsigned-ipa
+          path: ${appName}-unsigned.ipa
+          retention-days: 14
+`;
+    }
+
+    function generateProjectYml(appName, bundleId, version, iosTarget) {
+      return `name: ${appName}
+options:
+  bundleIdPrefix: ${bundleId.split('.').slice(0, -1).join('.') || 'com.ipaforge'}
+  deploymentTarget:
+    iOS: "${iosTarget}"
+
+targets:
+  ${appName}:
+    type: application
+    platform: iOS
+    deploymentTarget: "${iosTarget}"
+    sources:
+      - path: Sources
+    resources:
+      - path: WebContent
+        type: folder
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ${bundleId}
+        MARKETING_VERSION: "${version}"
+        CURRENT_PROJECT_VERSION: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        CODE_SIGN_IDENTITY: ""
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGNING_ALLOWED: NO
+        SWIFT_VERSION: "5.0"
+`;
+    }
+
+    function generateAppSwift(appName) {
+      return `import SwiftUI
+
+@main
+struct ${appName}App: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
+`;
+    }
+
+    function generateWebViewSwift(hasHtml) {
+      if (!hasHtml) {
+        return `import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "hammer.fill")
+                .font(.system(size: 44))
+                .foregroundStyle(.blue)
+            Text("Application prête")
+                .font(.title2.bold())
+            Text("Déposez un fichier HTML ou Swift pour personnaliser cette vue.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+        }
+    }
+}
+`;
+      }
+      return `import SwiftUI
+import WebKit
+
+struct WebContainerView: UIViewRepresentable {
+    func makeUIView(context: Context) -> WKWebView {
+        let config = WKWebViewConfiguration()
+        config.allowsInlineMediaPlayback = true
+        config.defaultWebpagePreferences.allowsContentJavaScript = true
+
+        let webView = WKWebView(frame: .zero, configuration: config)
+        webView.scrollView.contentInsetAdjustmentBehavior = .automatic
+        webView.isOpaque = false
+        webView.backgroundColor = .systemBackground
+
+        if let indexURL = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "WebContent") {
+            webView.loadFileURL(indexURL, allowingReadAccessTo: indexURL.deletingLastPathComponent())
+        }
+        return webView
+    }
+
+    func updateUIView(_ uiView: WKWebView, context: Context) {}
+}
+
+struct ContentView: View {
+    var body: some View {
+        WebContainerView()
+            .ignoresSafeArea(.container, edges: .bottom)
+    }
+}
+`;
+    }
+
+    function refreshGeneratedFiles(customSwift = null) {
+      const appName = sanitizeAppName($('app-name').value);
+      const bundleId = $('bundle-id').value.trim() || 'com.ipaforge.monapp';
+      const version = $('app-version').value.trim() || '1.0.0';
+      const iosTarget = $('ios-target').value;
+      const hasHtml = state.files.some((f) => /\.html?$/i.test(f.name));
+      const existingSwift = state.files.find((f) => /ContentView\.swift$/i.test(f.name));
+
+      state.generated.workflow = generateWorkflowYaml(appName);
+      state.generated.project = generateProjectYml(appName, bundleId, version, iosTarget);
+      state.generated.app = generateAppSwift(appName);
+      state.generated.swift = customSwift || (existingSwift ? existingSwift.content : generateWebViewSwift(hasHtml || state.files.length === 0));
+
+      renderCodeTab();
+    }
+
+    function renderCodeTab() {
+      const tab = state.activeTab;
+      const codeViewer = $('code-viewer');
+      const logsViewer = $('logs-viewer');
+
+      document.querySelectorAll('.tab-btn').forEach((btn) => {
+        const active = btn.dataset.tab === tab;
+        btn.classList.toggle('border-sky-400', active);
+        btn.classList.toggle('text-sky-400', active);
+        btn.classList.toggle('border-transparent', !active);
+        btn.classList.toggle('text-slate-400', !active);
+      });
+
+      if (tab === 'logs') {
+        codeViewer.classList.add('hidden');
+        logsViewer.classList.remove('hidden');
+        $('btn-copy-code').classList.add('hidden');
+      } else {
+        logsViewer.classList.add('hidden');
+        codeViewer.classList.remove('hidden');
+        $('btn-copy-code').classList.remove('hidden');
+        codeViewer.textContent = state.generated[tab] || '';
+      }
+    }
+
+    function renderFileList() {
+      const list = $('file-list');
+      const clearBtn = $('btn-clear-files');
+      list.innerHTML = '';
+      clearBtn.classList.toggle('hidden', state.files.length === 0);
+
+      state.files.forEach((file, idx) => {
+        const li = document.createElement('li');
+        li.className = 'flex items-center justify-between gap-2 px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs';
+        const kb = Math.max(0.1, file.size / 1024).toFixed(1);
+        li.innerHTML = `
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-300 font-mono text-[10px] uppercase shrink-0"></span>
+            <span class="text-slate-200 truncate font-medium"></span>
+            <span class="text-slate-500 shrink-0">${kb} Ko</span>
+          </div>
+          <button type="button" data-remove="${idx}" class="text-slate-500 hover:text-rose-400 transition shrink-0" title="Supprimer">✕</button>
+        `;
+        const ext = (file.name.split('.').pop() || 'file').slice(0, 6);
+        li.querySelector('span:first-child').textContent = ext;
+        li.querySelector('span:nth-child(2)').textContent = file.name;
+        list.appendChild(li);
+      });
+
+      if (state.files.length > 0) {
+        setStepState(0, 'done', `${state.files.length} fichier(s)`);
+      } else {
+        setStepState(0, 'idle', 'En attente');
+      }
+    }
+
+    async function handleFiles(fileList) {
+      const incoming = Array.from(fileList);
+      for (const f of incoming) {
+        const isText = /\.(html?|css|js|ts|jsx|tsx|json|swift|py|txt|md|svg)$/i.test(f.name);
+        const content = isText ? await f.text() : await f.arrayBuffer();
+        const existingIdx = state.files.findIndex((item) => item.name === f.name);
+        const entry = { name: f.name, size: f.size, isText, content };
+        if (existingIdx >= 0) {
+          state.files[existingIdx] = entry;
+        } else {
+          state.files.push(entry);
+        }
+      }
+      renderFileList();
+      refreshGeneratedFiles();
+      addLog(`${incoming.length} fichier(s) chargé(s) dans l'espace de travail.`, 'success');
+      showToast(`${incoming.length} fichier(s) ajouté(s)`, 'success');
+    }
+
+    async function runAiConversion() {
+      if (state.files.length === 0) {
+        showToast('Déposez d’abord au moins un fichier (ex: index.html).', 'warn');
+        return;
+      }
+
+      const mode = $('conversion-mode').value;
+      const provider = $('ai-provider').value;
+      const apiKey = $('ai-api-key').value.trim();
+      const instructions = $('ai-prompt').value.trim();
+      const appName = sanitizeAppName($('app-name').value);
+
+      setStepState(1, 'active', 'Conversion…');
+      $('pipeline-status-badge').textContent = 'Conversion IA en cours';
+      addLog(`Démarrage de la conversion (${mode}, moteur: ${provider})...`);
+
+      const textSummary = state.files
+        .filter((f) => f.isText)
+        .map((f) => `--- ${f.name} ---\n${f.content.slice(0, 8000)}`)
+        .join('\n\n');
+
+      if (provider !== 'local' && apiKey) {
+        try {
+          const systemPrompt = `Tu es un expert iOS SwiftUI. Convertis ou adapte le projet fourni pour iOS (${mode}). Retourne UNIQUEMENT le code Swift complet de ContentView.swift sans balises markdown.`;
+          const userPrompt = `Nom de l'app: ${appName}\nInstructions supplémentaires: ${instructions || 'Aucune'}\n\nFichiers:\n${textSummary}`;
+          let swiftOut = '';
+
+          if (provider === 'openai') {
+            const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${apiKey}`,
+              },
+              body: JSON.stringify({
+                model: 'gpt-4o-mini',
+                messages: [
+                  { role: 'system', content: systemPrompt },
+                  { role: 'user', content: userPrompt },
+                ],
+                temperature: 0.2,
+              }),
+            });
+            if (!resp.ok) throw new Error(`OpenAI HTTP ${resp.status}`);
+            const data = await resp.json();
+            swiftOut = data.choices?.[0]?.message?.content || '';
+          } else if (provider === 'gemini') {
+            const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: `${systemPrompt}\n\n${userPrompt}` }] }],
+              }),
+            });
+            if (!resp.ok) throw new Error(`Gemini HTTP ${resp.status}`);
+            const data = await resp.json();
+            swiftOut = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          }
+
+          swiftOut = swiftOut.replace(/^```swift\s*/i, '').replace(/```$/i, '').trim();
+          if (swiftOut) {
+            refreshGeneratedFiles(swiftOut);
+            setStepState(1, 'done', 'IA appliquée');
+            $('pipeline-status-badge').textContent = 'Prêt pour compilation';
+            addLog('Code SwiftUI généré par le modèle IA.', 'success');
+            showToast('Conversion IA terminée', 'success');
+            state.activeTab = 'swift';
+            renderCodeTab();
+            return;
+          }
+        } catch (err) {
+          addLog(`Erreur API IA (${err.message}), bascule sur le convertisseur intégré.`, 'warn');
+          showToast('Erreur API IA, bascule en mode intégré.', 'warn');
+        }
+      }
+
+      // Deterministic local conversion / wrapper
+      await new Promise((r) => setTimeout(r, 500));
+      refreshGeneratedFiles();
+      setStepState(1, 'done', 'Converti');
+      $('pipeline-status-badge').textContent = 'Prêt pour compilation';
+      addLog('Projet iOS (XcodeGen + SwiftUI/WKWebView + GitHub Actions macOS) généré.', 'success');
+      showToast('Projet iOS généré avec succès', 'success');
+      state.activeTab = 'swift';
+      renderCodeTab();
+    }
+
+    async function buildProjectZipBlob() {
+      const zip = new JSZip();
+      const appName = sanitizeAppName($('app-name').value);
+
+      zip.file('.github/workflows/build-unsigned-ipa.yml', state.generated.workflow);
+      zip.file('project.yml', state.generated.project);
+      zip.file('Sources/App.swift', state.generated.app);
+      zip.file('Sources/ContentView.swift', state.generated.swift);
+
+      const hasHtml = state.files.some((f) => /\.html?$/i.test(f.name));
+      if (!hasHtml) {
+        zip.file('WebContent/index.html', `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><h1>${appName}</h1></body></html>`);
+      }
+
+      state.files.forEach((f) => {
+        if (/\.swift$/i.test(f.name)) {
+          zip.file(`Sources/${f.name}`, f.content);
+        } else {
+          const targetName = /^index\.html?$/i.test(f.name) ? 'index.html' : f.name;
+          zip.file(`WebContent/${targetName}`, f.content);
+        }
+      });
+
+      return zip.generateAsync({ type: 'blob' });
+    }
+
+    function triggerDownload(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    async function githubPutFile(repo, branch, token, path, contentStrOrBytes, isBinary = false) {
+      const apiBase = `https://api.github.com/repos/${repo}/contents/${path}`;
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+      };
+
+      let sha = undefined;
+      const checkResp = await fetch(`${apiBase}?ref=${encodeURIComponent(branch)}`, { headers });
+      if (checkResp.ok) {
+        const existing = await checkResp.json();
+        sha = existing.sha;
+      }
+
+      let b64 = '';
+      if (isBinary) {
+        const bytes = new Uint8Array(contentStrOrBytes);
+        let bin = '';
+        for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        b64 = btoa(bin);
+      } else {
+        b64 = btoa(unescape(encodeURIComponent(contentStrOrBytes)));
+      }
+
+      const putResp = await fetch(apiBase, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({
+          message: `IPA Forge: update ${path}`,
+          content: b64,
+          branch,
+          sha,
+        }),
+      });
+      if (!putResp.ok) {
+        const errBody = await putResp.text();
+        throw new Error(`GitHub PUT ${path}: ${putResp.status} ${errBody.slice(0, 120)}`);
+      }
+    }
+
+    async function startMacOsBuild() {
+      if (state.files.length === 0) {
+        showToast('Déposez d’abord un fichier ou chargez l’exemple.', 'warn');
+        return;
+      }
+
+      const appName = sanitizeAppName($('app-name').value);
+      const isDemo = $('sim-mode').checked;
+      refreshGeneratedFiles();
+
+      $('ipa-result-card').classList.add('hidden');
+      state.activeTab = 'logs';
+      renderCodeTab();
+
+      if (isDemo) {
+        $('pipeline-status-badge').textContent = 'Compilation macOS (Démo)';
+        setStepState(1, 'done', 'Converti');
+        setStepState(2, 'active', 'Envoi…');
+        addLog('Mode démo : préparation des fichiers pour GitHub Actions...');
+        await new Promise((r) => setTimeout(r, 700));
+        setStepState(2, 'done', 'Commit prêt');
+        addLog('Workflow .github/workflows/build-unsigned-ipa.yml envoyé sur main.', 'success');
+
+        setStepState(3, 'active', 'macos-latest…');
+        addLog('Runner GitHub Actions macos-latest démarré : xcodegen generate + xcodebuild Release (CODE_SIGNING_ALLOWED=NO)...');
+        await new Promise((r) => setTimeout(r, 1100));
+        setStepState(3, 'done', 'Compilé');
+        addLog(`Build réussi : build/Build/Products/Release-iphoneos/${appName}.app`, 'success');
+
+        setStepState(4, 'active', 'Empaquetage…');
+        await new Promise((r) => setTimeout(r, 600));
+
+        // Create a realistic Payload/<App>.app ZIP structure as a demo .ipa package
+        const ipaZip = new JSZip();
+        ipaZip.file(`Payload/${appName}.app/Info.plist`, `<plist><dict><key>CFBundleName</key><string>${appName}</string></dict></plist>`);
+        ipaZip.file(`Payload/${appName}.app/README.txt`, 'Archive de démonstration générée en mode démo. Pour une vraie compilation binaire ARM64, décochez "Mode démo" avec votre dépôt GitHub.');
+        state.demoIpaBlob = await ipaZip.generateAsync({ type: 'blob' });
+
+        setStepState(4, 'done', 'Prête');
+        $('pipeline-status-badge').textContent = 'Terminé';
+        $('ipa-filename').textContent = `${appName}-unsigned.ipa`;
+        $('ipa-meta').textContent = 'Archive générée en mode démo (décochez Mode démo + ajoutez votre PAT GitHub pour le binaire ARM64 réel sur macos-latest).';
+        $('link-gh-run').classList.add('hidden');
+        $('ipa-result-card').classList.remove('hidden');
+        addLog(`${appName}-unsigned.ipa prête au téléchargement.`, 'success');
+        showToast(`${appName}-unsigned.ipa générée !`, 'success');
+        return;
+      }
+
+      // Real GitHub Actions execution
+      const repo = $('gh-repo').value.trim();
+      const branch = $('gh-branch').value.trim() || 'main';
+      const token = $('gh-token').value.trim();
+
+      if (!repo || !repo.includes('/') || !token) {
+        showToast('Renseignez le dépôt (owner/repo) et le token GitHub.', 'error');
+        return;
+      }
+
+      try {
+        $('pipeline-status-badge').textContent = 'Envoi vers GitHub…';
+        setStepState(2, 'active', 'Push API…');
+        addLog(`Envoi du projet vers ${repo} (${branch})...`);
+
+        await githubPutFile(repo, branch, token, '.github/workflows/build-unsigned-ipa.yml', state.generated.workflow);
+        await githubPutFile(repo, branch, token, 'project.yml', state.generated.project);
+        await githubPutFile(repo, branch, token, 'Sources/App.swift', state.generated.app);
+        await githubPutFile(repo, branch, token, 'Sources/ContentView.swift', state.generated.swift);
+
+        for (const f of state.files) {
+          const targetPath = /\.swift$/i.test(f.name)
+            ? `Sources/${f.name}`
+            : `WebContent/${/^index\.html?$/i.test(f.name) ? 'index.html' : f.name}`;
+          await githubPutFile(repo, branch, token, targetPath, f.content, !f.isText);
+        }
+
+        setStepState(2, 'done', 'Poussé');
+        addLog('Fichiers poussés sur GitHub. Déclenchement de workflow_dispatch...', 'success');
+
+        const dispatchResp = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/build-unsigned-ipa.yml/dispatches`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/vnd.github+json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ref: branch, inputs: { app_name: appName } }),
+        });
+        if (!dispatchResp.ok) throw new Error(`Dispatch HTTP ${dispatchResp.status}`);
+
+        setStepState(3, 'active', 'En file…');
+        $('pipeline-status-badge').textContent = 'Build macOS en cours';
+        addLog('Workflow macOS déclenché. Suivi du statut en direct...');
+
+        let run = null;
+        for (let attempt = 0; attempt < 40; attempt++) {
+          await new Promise((r) => setTimeout(r, 5000));
+          const runsResp = await fetch(`https://api.github.com/repos/${repo}/actions/runs?branch=${encodeURIComponent(branch)}&per_page=1`, {
+            headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' },
+          });
+          if (!runsResp.ok) continue;
+          const runsData = await runsResp.json();
+          run = runsData.workflow_runs?.[0];
+          if (!run) continue;
+
+          addLog(`Statut GitHub Actions : ${run.status}${run.conclusion ? ' (' + run.conclusion + ')' : ''}`);
+          if (run.status === 'completed') break;
+          setStepState(3, 'active', run.status);
+        }
+
+        if (!run || run.conclusion !== 'success') {
+          setStepState(3, 'error', run?.conclusion || 'Échec');
+          $('pipeline-status-badge').textContent = 'Échec du build';
+          addLog('La compilation macOS a échoué. Consultez les logs sur GitHub.', 'error');
+          showToast('Échec du build GitHub Actions', 'error');
+          return;
+        }
+
+        setStepState(3, 'done', 'Compilé');
+        setStepState(4, 'done', 'Artefact prêt');
+        $('pipeline-status-badge').textContent = 'Terminé';
+        state.lastRunUrl = run.html_url;
+
+        const artResp = await fetch(run.artifacts_url, {
+          headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' },
+        });
+        const artData = await artResp.json();
+        const artifact = artData.artifacts?.[0];
+        state.lastArtifactUrl = artifact?.archive_download_url || '';
+
+        $('ipa-filename').textContent = `${appName}-unsigned.ipa`;
+        $('ipa-meta').textContent = 'Compilation macOS terminée sur GitHub Actions.';
+        $('link-gh-run').href = run.html_url;
+        $('link-gh-run').classList.remove('hidden');
+        $('ipa-result-card').classList.remove('hidden');
+        addLog('Artefact .ipa disponible sur GitHub Actions !', 'success');
+        showToast('Compilation macOS réussie !', 'success');
+      } catch (err) {
+        setStepState(3, 'error', 'Erreur');
+        $('pipeline-status-badge').textContent = 'Erreur';
+        addLog(`Erreur : ${err.message}`, 'error');
+        showToast(err.message, 'error');
+      }
+    }
+
+    // Event bindings
+    function init() {
+      const dropzone = $('dropzone');
+      const fileInput = $('file-input');
+
+      dropzone.addEventListener('click', () => fileInput.click());
+      dropzone.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          fileInput.click();
+        }
+      });
+
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('drop-active');
+      });
+      dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drop-active'));
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('drop-active');
+        if (e.dataTransfer?.files?.length) handleFiles(e.dataTransfer.files);
+      });
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files?.length) handleFiles(e.target.files);
+        e.target.value = '';
+      });
+
+      $('file-list').addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-remove]');
+        if (!btn) return;
+        const idx = Number(btn.dataset.remove);
+        state.files.splice(idx, 1);
+        renderFileList();
+        refreshGeneratedFiles();
+      });
+
+      $('btn-clear-files').addEventListener('click', () => {
+        state.files = [];
+        renderFileList();
+        refreshGeneratedFiles();
+        addLog('Liste des fichiers vidée.');
+      });
+
+      $('btn-load-demo').addEventListener('click', () => {
+        const demoHtml = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Compteur iOS</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #0f172a; color: #f8fafc; }
+    button { padding: 14px 28px; border-radius: 14px; border: 0; background: #38bdf8; color: #0f172a; font-weight: 700; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h1 id="val">0</h1>
+  <button onclick="document.getElementById('val').textContent++">+1</button>
+</body>
+</html>`;
+        state.files = [{ name: 'index.html', size: demoHtml.length, isText: true, content: demoHtml }];
+        renderFileList();
+        refreshGeneratedFiles();
+        addLog('Exemple index.html chargé.', 'success');
+        showToast('Exemple HTML chargé', 'success');
+      });
+
+      ['app-name', 'bundle-id', 'app-version', 'ios-target'].forEach((id) => {
+        $(id).addEventListener('input', () => refreshGeneratedFiles());
+      });
+
+      $('ai-provider').addEventListener('change', (e) => {
+        const badge = $('ai-badge');
+        badge.textContent = e.target.value === 'local' ? 'Mode local prêt' : `API ${e.target.value.toUpperCase()}`;
+      });
+
+      $('sim-mode').addEventListener('change', (e) => {
+        $('github-fields').classList.toggle('opacity-60', e.target.checked);
+      });
+
+      $('code-tabs').addEventListener('click', (e) => {
+        const btn = e.target.closest('.tab-btn');
+        if (!btn) return;
+        state.activeTab = btn.dataset.tab;
+        renderCodeTab();
+      });
+
+      $('btn-copy-code').addEventListener('click', async () => {
+        const text = state.generated[state.activeTab] || '';
+        try {
+          if (navigator.clipboard) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+          }
+          showToast('Code copié dans le presse-papiers', 'success');
+        } catch {
+          showToast('Impossible de copier automatiquement', 'warn');
+        }
+      });
+
+      $('btn-download-zip').addEventListener('click', async () => {
+        refreshGeneratedFiles();
+        const blob = await buildProjectZipBlob();
+        const appName = sanitizeAppName($('app-name').value);
+        triggerDownload(blob, `${appName}-ios-github.zip`);
+        addLog(`Archive ${appName}-ios-github.zip téléchargée.`, 'success');
+        showToast('Projet ZIP exporté', 'success');
+      });
+
+      $('btn-download-ipa').addEventListener('click', async () => {
+        const appName = sanitizeAppName($('app-name').value);
+        if ($('sim-mode').checked && state.demoIpaBlob) {
+          triggerDownload(state.demoIpaBlob, `${appName}-unsigned.ipa`);
+          return;
+        }
+        if (state.lastArtifactUrl) {
+          const btn = $('btn-download-ipa');
+          const token = $('gh-token').value.trim();
+          const prevLabel = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = 'Extraction du .ipa…';
+          try {
+            addLog('Téléchargement de l’artefact GitHub (.zip) et extraction du .ipa...');
+            const resp = await fetch(state.lastArtifactUrl, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+            const zipBuffer = await resp.arrayBuffer();
+            const outerZip = await JSZip.loadAsync(zipBuffer);
+            const ipaEntry = Object.values(outerZip.files).find(
+              (entry) => !entry.dir && entry.name.toLowerCase().endsWith('.ipa')
+            );
+            if (ipaEntry) {
+              const ipaBytes = await ipaEntry.async('blob');
+              const ipaBlob = new Blob([ipaBytes], { type: 'application/octet-stream' });
+              const ipaName = ipaEntry.name.split('/').pop() || `${appName}-unsigned.ipa`;
+              triggerDownload(ipaBlob, ipaName);
+              addLog(`${ipaName} extrait et téléchargé directement.`, 'success');
+              showToast(`${ipaName} téléchargé !`, 'success');
+            } else {
+              const fallbackBlob = new Blob([zipBuffer], { type: 'application/zip' });
+              triggerDownload(fallbackBlob, `${appName}-unsigned-artifact.zip`);
+              addLog('Aucun .ipa trouvé dans l’archive, téléchargement du .zip brut.', 'warn');
+              showToast('Aucun .ipa trouvé, archive .zip téléchargée.', 'warn');
+            }
+          } catch (err) {
+            addLog(`Erreur téléchargement/extraction : ${err.message}`, 'error');
+            showToast(`Téléchargez depuis GitHub : ${err.message}`, 'warn');
+          } finally {
+            btn.disabled = false;
+            btn.textContent = prevLabel;
+          }
+        }
+      });
+
+      $('btn-convert').addEventListener('click', runAiConversion);
+      $('btn-build-ipa').addEventListener('click', startMacOsBuild);
+
+      refreshGeneratedFiles();
+      renderLogs();
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
