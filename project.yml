@@ -1,11 +1,11 @@
-name: IPAFORGE
+name: IPATEST
 options:
   bundleIdPrefix: com.gnof
   deploymentTarget:
     iOS: "16.0"
 
 targets:
-  IPAFORGE:
+  IPATEST:
     type: application
     platform: iOS
     deploymentTarget: "16.0"
@@ -23,7 +23,5 @@ targets:
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
-        CODE_SIGN_IDENTITY: ""
-        CODE_SIGNING_REQUIRED: NO
-        CODE_SIGNING_ALLOWED: NO
+        CODE_SIGN_STYLE: Automatic
         SWIFT_VERSION: "5.0"
