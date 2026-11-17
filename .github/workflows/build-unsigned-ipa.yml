@@ -6,7 +6,7 @@ on:
       app_name:
         description: 'Nom de l application'
         required: false
-        default: 'IPAFORGE'
+        default: 'IPATEST'
 
 jobs:
   build-ipa-vnc:
@@ -27,9 +27,17 @@ jobs:
         env:
           VNC_PASSWORD: ${{ secrets.VNC_PASSWORD || 'IpaForge2026!' }}
         run: |
-          sudo dscl . -passwd /Users/runner "$VNC_PASSWORD"
+          sudo dscl . -create /Users/vncuser || true
+          sudo dscl . -create /Users/vncuser UserShell /bin/bash
+          sudo dscl . -create /Users/vncuser RealName "VNC User"
+          sudo dscl . -create /Users/vncuser UniqueID 550
+          sudo dscl . -create /Users/vncuser PrimaryGroupID 20
+          sudo dscl . -create /Users/vncuser NFSHomeDirectory /Users/vncuser
+          sudo createhomedir -c -u vncuser || true
+          sudo dscl . -passwd /Users/vncuser "$VNC_PASSWORD"
+          sudo dscl . -append /Groups/admin GroupMembership vncuser
           sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
-            -activate -configure -allowAccessFor -allUsers -privs -all \
+            -activate -configure -access -on -users vncuser,runner -privs -all \
             -clientopts -setvnclegacy -vnclegacy yes -setvncpw -vncpw "$VNC_PASSWORD" -restart -agent
 
           cat << 'CMD' > "$HOME/Desktop/Terminer_et_Compiler.command"
@@ -39,13 +47,13 @@ jobs:
           CMD
           chmod +x "$HOME/Desktop/Terminer_et_Compiler.command"
 
-          open "IPAFORGE.xcodeproj"
+          open "IPATEST.xcodeproj"
           bore local 5900 --to bore.pub > /tmp/bore.log 2>&1 &
           sleep 4
           echo "========================================================"
           echo "CONNECTEZ-VOUS EN VNC (ex: RealVNC Viewer sur Windows) :"
           grep -o 'bore.pub:[0-9]*' /tmp/bore.log | head -n 1
-          echo "Mot de passe VNC : (secret VNC_PASSWORD ou IpaForge2026!)"
+          echo "Utilisateur macOS : vncuser | Mot de passe : (secret VNC_PASSWORD ou IpaForge2026!)"
           echo "1. Dans Xcode -> Settings -> Accounts : connectez votre Apple ID + 2FA"
           echo "2. Dans Signing & Capabilities : sélectionnez votre Team (Personal Team)"
           echo "3. Double-cliquez sur Terminer_et_Compiler.command sur le Bureau"
@@ -56,8 +64,8 @@ jobs:
       - name: Compiler et empaqueter l'IPA signée 7 jours
         run: |
           xcodebuild \
-            -project "IPAFORGE.xcodeproj" \
-            -scheme "IPAFORGE" \
+            -project "IPATEST.xcodeproj" \
+            -scheme "IPATEST" \
             -configuration Release \
             -sdk iphoneos \
             -derivedDataPath build \
@@ -65,12 +73,12 @@ jobs:
             clean build
 
           mkdir -p Payload
-          cp -R "build/Build/Products/Release-iphoneos/IPAFORGE.app" Payload/
-          zip -qry "IPAFORGE-signed-7d.ipa" Payload
+          cp -R "build/Build/Products/Release-iphoneos/IPATEST.app" Payload/
+          zip -qry "IPATEST-signed-7d.ipa" Payload
 
       - name: Publier l'artefact .ipa signée
         uses: actions/upload-artifact@v4
         with:
-          name: IPAFORGE-signed-7d-ipa
-          path: IPAFORGE-signed-7d.ipa
+          name: IPATEST-signed-7d-ipa
+          path: IPATEST-signed-7d.ipa
           retention-days: 14
