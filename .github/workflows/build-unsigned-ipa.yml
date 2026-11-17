@@ -1,0 +1,61 @@
+name: Build Unsigned iOS IPA
+
+on:
+  workflow_dispatch:
+    inputs:
+      app_name:
+        description: 'Nom de l application'
+        required: false
+        default: 'IPAFORGE'
+
+jobs:
+  build-unsigned-ipa:
+    name: Compiler .ipa non signée sur macOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Sélectionner Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+
+      - name: Installer XcodeGen si absent
+        run: |
+          if ! command -v xcodegen &> /dev/null; then
+            brew install xcodegen
+          fi
+
+      - name: Générer le projet .xcodeproj
+        run: |
+          xcodegen generate --spec project.yml
+
+      - name: Compiler l'application iOS sans signature
+        run: |
+          xcodebuild \
+            -project "IPAFORGE.xcodeproj" \
+            -scheme "IPAFORGE" \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            AD_HOC_CODE_SIGNING_ALLOWED=YES \
+            clean build
+
+      - name: Empaqueter le fichier .ipa non signé
+        run: |
+          mkdir -p Payload
+          cp -R "build/Build/Products/Release-iphoneos/IPAFORGE.app" Payload/
+          zip -qry "IPAFORGE-unsigned.ipa" Payload
+          ls -lh "IPAFORGE-unsigned.ipa"
+
+      - name: Publier l'artefact .ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: IPAFORGE-unsigned-ipa
+          path: IPAFORGE-unsigned.ipa
+          retention-days: 14
