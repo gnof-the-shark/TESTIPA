@@ -1,0 +1,2506 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark"><head><script data-bard-client-injected="true">(function(firebaseConfig, initialAuthToken, appId) {
+        window.__firebase_config = firebaseConfig;
+        window.__initial_auth_token = initialAuthToken;
+        window.__app_id = appId;
+            })("\n{\n  \"apiKey\": \"AIzaSyCqyCcs2R2e7AegGjvFAwG98wlamtbHvZY\",\n  \"authDomain\": \"bard-frontend.firebaseapp.com\",\n  \"projectId\": \"bard-frontend\",\n  \"storageBucket\": \"bard-frontend.firebasestorage.app\",\n  \"messagingSenderId\": \"175205271074\",\n  \"appId\": \"1:175205271074:web:2b7bd4d34d33bf38e6ec7b\"\n}\n","eyJhbGciOiJSUzI1NiIsImtpZCI6IjExNjRiNzdiNDMzZDdhMDAyMWI4NjE4YjhjYTU3ZTMyZGI5MWUxMTMiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1mYnN2Y0BiYXJkLWZyb250ZW5kLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwiYXVkIjoiaHR0cHM6Ly9pZGVudGl0eXRvb2xraXQuZ29vZ2xlYXBpcy5jb20vZ29vZ2xlLmlkZW50aXR5LmlkZW50aXR5dG9vbGtpdC52MS5JZGVudGl0eVRvb2xraXQiLCJ1aWQiOiIwNDk2MTM0ODMzNjEwOTA1MTAzNyIsImlzcyI6ImZpcmViYXNlLWFkbWluc2RrLWZic3ZjQGJhcmQtZnJvbnRlbmQuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJjbGFpbXMiOnsiYXBwSWQiOiJjXzg1MTQ1ZmE0YzBiMzJkYzFfZjVjOWIyMjhfaXBhLWZvcmdlLmh0bWwtNDE4In0sImV4cCI6MTc5NTAzODYzNSwiaWF0IjoxNzk1MDM1MDM1LCJhbGciOiJSUzI1NiJ9.BqSnj0M3io8Jm5YqcKh7dPpdcETW81Iyz-p5WcW-2mH8-rLK-uQpzcGAwfUFIq_iy8svNzQyyHiXshjCU9f8W0E66dcVKc32BPj-cNk2y3goHiCmGlRT-6Vok7ZVKA4_rKZrk0Yv8F4KSCfSAHWB39OjSDMJtMKVZEf0jwqNXZDH28MbOXsmnr7tt95fLE9vIFyjPj2d4yLLsrmmMnL4IN10FMMvcHQNNBjna8p69f7o2LBQj5KmOxfG-o8uCm3e3KipkOwrrmhPgHuNaDT-cVhZRpRAs3zCMEoEH-5b_ffbIuvDy3v2zUguii2-I76fIevZjzXWwO5J6Ak6i5okcg","c_85145fa4c0b32dc1_f5c9b228_ipa-forge.html-418")</script><script data-bard-client-injected="true">
+  document.addEventListener('input', (event) => {
+    if (event.target && (event.target.isContentEditable || event.target.hasAttribute('contenteditable'))) {
+      const clonedDoc = document.cloneNode(true);
+      const injectedScripts = clonedDoc.querySelectorAll('[data-bard-client-injected="true"]');
+      injectedScripts.forEach(el => el.remove());
+      window.parent.postMessage({
+        type: 'inlineEdit',
+        html: '<!DOCTYPE html>\n' + clonedDoc.documentElement.outerHTML
+      }, '*');
+    }
+  });
+</script><script data-bard-client-injected="true">(function(){'use strict';window.addEventListener("message",a=>{a.data&&a.data.type==="SUPPLEMENTAL_DATA_UPDATE"&&window.dispatchEvent(new CustomEvent("supplementaldataupdate",{detail:a.data.data}))});}).call(this);
+</script><script data-bard-client-injected="true">(function(){'use strict';var k=typeof Object.defineProperties=="function"?Object.defineProperty:function(a,b,d){if(a==Array.prototype||a==Object.prototype)return a;a[b]=d.value;return a};function m(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var b=0;b<a.length;++b){var d=a[b];if(d&&d.Math==Math)return d}throw Error("Cannot find global object");}var q=m(this);
+function r(a,b){if(b)a:{var d=q;a=a.split(".");for(var c=0;c<a.length-1;c++){var e=a[c];if(!(e in d))break a;d=d[e]}a=a[a.length-1];c=d[a];b=b(c);b!=c&&b!=null&&k(d,a,{configurable:!0,writable:!0,value:b})}}function t(a){function b(c){return a.next(c)}function d(c){return a.throw(c)}return new Promise(function(c,e){function f(g){g.done?c(g.value):Promise.resolve(g.value).then(b,d).then(f,e)}f(a.next())})}function u(a){return t(a())}
+r("Object.values",function(a){return a?a:function(b){var d=[],c;for(c in b)Object.prototype.hasOwnProperty.call(b,c)&&d.push(b[c]);return d}});r("Array.prototype.includes",function(a){return a?a:function(b,d){var c=this;c instanceof String&&(c=String(c));var e=c.length;d=d||0;for(d<0&&(d=Math.max(d+e,0));d<e;d++){var f=c[d];if(f===b||Object.is(f,b))return!0}return!1}});/*
+
+ MIT License
+
+ Copyright (c) 2017-2023 W.Y.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+*/
+function v(a,b){var d=a.style;b.backgroundColor&&(d.backgroundColor=b.backgroundColor);b.width&&(d.width=`${b.width}px`);b.height&&(d.height=`${b.height}px`);var c=b.style;c!=null&&Object.keys(c).forEach(e=>{d[e]=c[e]})};var aa=(()=>{var a=0;return()=>{a+=1;return`u${`0000${(Math.random()*1679616<<0).toString(36)}`.slice(-4)}${a}`}})();function w(a){var b=[];for(let d=0,c=a.length;d<c;d++)b.push(a[d]);return b}let y=null;function z(a={}){return y?y:a.u?y=a.u:y=w(window.getComputedStyle(document.documentElement))}function A(a,b){return(a=(a.ownerDocument.defaultView||window).getComputedStyle(a).getPropertyValue(b))?parseFloat(a.replace("px","")):0}
+function B(a,b={}){var d;if(!(d=b.width)){d=A(a,"border-left-width");var c=A(a,"border-right-width");d=a.clientWidth+d+c}(b=b.height)||(b=A(a,"border-top-width"),c=A(a,"border-bottom-width"),b=a.clientHeight+b+c);return{width:d,height:b}}function C(a){return new Promise((b,d)=>{var c=new Image;c.onload=()=>{c.decode().then(()=>{requestAnimationFrame(()=>b(c))})};c.onerror=d;c.crossOrigin="anonymous";c.decoding="async";c.src=a})}
+function ba(a){return u(function*(){return Promise.resolve().then(()=>(new XMLSerializer).serializeToString(a)).then(encodeURIComponent).then(b=>`data:image/svg+xml;charset=utf-8,${b}`)})}
+function ca(a,b,d){return u(function*(){var c=document.createElementNS("http://www.w3.org/2000/svg","svg"),e=document.createElementNS("http://www.w3.org/2000/svg","foreignObject");c.setAttribute("width",`${b}`);c.setAttribute("height",`${d}`);c.setAttribute("viewBox",`0 0 ${b} ${d}`);e.setAttribute("width","100%");e.setAttribute("height","100%");e.setAttribute("x","0");e.setAttribute("y","0");e.setAttribute("externalResourcesRequired","true");c.appendChild(e);e.appendChild(a);return ba(c)})}
+var D=(a,b)=>{if(a instanceof b)return!0;a=Object.getPrototypeOf(a);return a===null?!1:a.constructor.name===b.name||D(a,b)};function da(a,b){return z(b).map(d=>{var c=a.getPropertyValue(d),e=a.getPropertyPriority(d);return`${d}: ${c}${e?" !important":""};`}).join(" ")}
+function E(a,b,d,c){a=window.getComputedStyle(a,d);var e=a.getPropertyValue("content");if(e!==""&&e!=="none"){var f=aa();try{b.className=`${b.className} ${f}`}catch(h){return}e=document.createElement("style");var g=e.appendChild;d=`.${f}:${d}`;a.cssText?(c=a.getPropertyValue("content"),c=`${a.cssText} content: '${c.replace(/'|"/g,"")}';`):c=da(a,c);g.call(e,document.createTextNode(`${d}{${c}}`));b.appendChild(e)}};function F(a){return a.search(/^(data:)/)!==-1}function G(a,b,d){return u(function*(){var c=yield fetch(a,b);if(c.status===404)throw Error(`Resource "${c.url}" not found`);var e=yield c.blob();return new Promise((f,g)=>{var h=new FileReader;h.onerror=g;h.onloadend=()=>{try{f(d({v:c,result:h.result}))}catch(l){g(l)}};h.readAsDataURL(e)})})}const H={};function ea(a,b,d){var c=a.replace(/\?.*/,"");d&&(c=a);/ttf|otf|eot|woff2?/i.test(c)&&(c=c.replace(/.*\//,""));return b?`[${b}]${c}`:c}
+function I(a,b,d){return u(function*(){var c=ea(a,b,d.F);if(H[c]!=null)return H[c];d.B&&(a+=(/\?/.test(a)?"&":"?")+(new Date).getTime());try{let f=yield G(a,d.l,({v:g,result:h})=>{b||(b=g.headers.get("Content-Type")||"");return h.split(/,/)[1]});var e=`data:${b};base64,${f}`}catch(f){e=d.o||""}return H[c]=e})};const J={R:"application/font-woff",S:"application/font-woff",O:"application/font-truetype",C:"application/vnd.ms-fontobject",J:"image/png",H:"image/jpeg",G:"image/jpeg",D:"image/gif",N:"image/tiff",M:"image/svg+xml",P:"image/webp"};function K(a){return(a=/\.([^./]*?)$/g.exec(a))?a[1]:""};function fa(a){return u(function*(){var b=a.toDataURL();return b==="data:,"?a.cloneNode(!1):C(b)})}function ha(a,b){return u(function*(){if(a.currentSrc){var d=document.createElement("canvas");let c=d.getContext("2d");d.width=a.clientWidth;d.height=a.clientHeight;c==null||c.drawImage(a,0,0,d.width,d.height);d=d.toDataURL();return C(d)}d=a.poster;d=yield I(d,J[K(d).toLowerCase()]||"",b);return C(d)})}
+function ia(a,b){return u(function*(){try{let d;if(a==null?0:(d=a.contentDocument)==null?0:d.body)return yield L(a.contentDocument.body,b,!0)}catch(d){}return a.cloneNode(!1)})}function ja(a,b){return u(function*(){return D(a,HTMLCanvasElement)?fa(a):D(a,HTMLVideoElement)?ha(a,b):D(a,HTMLIFrameElement)?ia(a,b):a.cloneNode(a.tagName!=null&&a.tagName.toUpperCase()==="SVG")})}
+function ka(a,b,d){return u(function*(){if(b.tagName!=null&&b.tagName.toUpperCase()==="SVG")return b;var c=[];if(a.tagName!=null&&a.tagName.toUpperCase()==="SLOT"&&a.assignedNodes)c=w(a.assignedNodes());else{let e;if(D(a,HTMLIFrameElement)&&((e=a.contentDocument)==null?0:e.body))c=w(a.contentDocument.body.childNodes);else{let f;c=w(((f=a.shadowRoot)!=null?f:a).childNodes)}}if(c.length===0||D(a,HTMLVideoElement))return b;yield c.reduce((e,f)=>e.then(()=>L(f,d)).then(g=>{g&&b.appendChild(g)}),Promise.resolve());
+return b})}function la(a,b,d){var c=b.style;if(c){var e=window.getComputedStyle(a);e.cssText?(c.cssText=e.cssText,c.transformOrigin=e.transformOrigin):z(d).forEach(f=>{var g=e.getPropertyValue(f);f==="font-size"&&g.endsWith("px")&&(g=`${Math.floor(parseFloat(g.substring(0,g.length-2)))-.1}px`);D(a,HTMLIFrameElement)&&f==="display"&&g==="inline"&&(g="block");f==="d"&&b.getAttribute("d")&&(g=`path(${b.getAttribute("d")})`);c.setProperty(f,g,e.getPropertyPriority(f))})}}
+function ma(a,b){D(a,HTMLSelectElement)&&(b=Array.from(b.children).find(d=>a.value===d.getAttribute("value")))&&b.setAttribute("selected","")}
+function na(a,b){return u(function*(){var d=a.querySelectorAll?a.querySelectorAll("use"):[];if(d.length===0)return a;var c={};for(var e=0;e<d.length;e++){var f=d[e].getAttribute("xlink:href");if(f){let g=document.querySelector(f);a.querySelector(f)||!g||c[f]||(c[f]=yield L(g,b,!0))}}d=Object.values(c);if(d.length){c=document.createElementNS("http://www.w3.org/1999/xhtml","svg");c.setAttribute("xmlns","http://www.w3.org/1999/xhtml");c.style.position="absolute";c.style.width="0";c.style.height="0";
+c.style.overflow="hidden";c.style.display="none";e=document.createElementNS("http://www.w3.org/1999/xhtml","defs");c.appendChild(e);for(f=0;f<d.length;f++)e.appendChild(d[f]);a.appendChild(c)}return a})}
+function L(a,b,d){return u(function*(){return d||!b.filter||b.filter(a)?Promise.resolve(a).then(c=>ja(c,b)).then(c=>ka(a,c,b)).then(c=>{D(c,Element)&&(la(a,c,b),E(a,c,":before",b),E(a,c,":after",b),D(a,HTMLTextAreaElement)&&(c.textContent=a.value),D(a,HTMLInputElement)&&c.setAttribute("value",a.value),ma(a,c));return c}).then(c=>na(c,b)):null})};const M=/url\((['"]?)([^'"]+?)\1\)/g,oa=/url\([^)]+\)\s*format\((["']?)([^"']+)\1\)/g,pa=/src:\s*(?:url\([^)]+\)\s*format\([^)]+\)[,;]\s*)+/g;function qa(a){var b=[];a.replace(M,(d,c,e)=>{b.push(e);return d});return b.filter(d=>!F(d))}
+function ra(a,b,d,c){return u(function*(){try{let e=d?(new URL(b,d||void 0)).toString():b,f;f=yield I(e,J[K(b).toLowerCase()]||"",c);return a.replace(new RegExp(`(url\\(['"]?)(${b.replace(/([.*+?^${}()|\[\]\/\\])/g,"\\$1")})(['"]?\\))`,"g"),`$1${f}$3`)}catch(e){}return a})}function sa(a,{K:b}){return b?a.replace(pa,d=>{for(;;){let [c,,e]=oa.exec(d)||[];if(!e)return"";if(e===b)return`src: ${c};`}}):a}
+function N(a,b,d){return u(function*(){if(a.search(M)===-1)return a;var c=sa(a,d);return qa(c).reduce((e,f)=>e.then(g=>ra(g,f,b,d)),Promise.resolve(c))})};function O(a,b,d){return u(function*(){var c,e=(c=b.style)==null?void 0:c.getPropertyValue(a);return e?(c=yield N(e,null,d),b.style.setProperty(a,c,b.style.getPropertyPriority(a)),!0):!1})}function ta(a,b){return u(function*(){(yield O("background",a,b))||(yield O("background-image",a,b));(yield O("mask",a,b))||(yield O("-webkit-mask",a,b))||(yield O("mask-image",a,b))||(yield O("-webkit-mask-image",a,b))})}
+function ua(a,b){return u(function*(){var d=D(a,HTMLImageElement);if(d&&!F(a.src)||D(a,SVGImageElement)&&!F(a.href.baseVal)){var c=d?a.src:a.href.baseVal,e=yield I(c,J[K(c).toLowerCase()]||"",b);yield new Promise((f,g)=>{a.onload=f;a.onerror=b.h?(...h)=>{try{f(b.h(...h))}catch(l){g(l)}}:g;a.decode&&(a.decode=f);a.loading==="lazy"&&(a.loading="eager");d?(a.srcset="",a.src=e):a.href.baseVal=e})}})}
+function va(a,b){return u(function*(){var d=w(a.childNodes).map(c=>P(c,b));yield Promise.all(d).then(()=>a)})}function P(a,b){return u(function*(){D(a,Element)&&(yield ta(a,b),yield ua(a,b),yield va(a,b))})};const Q={};function R(a){return u(function*(){var b=Q[a];if(b!=null)return b;b=yield(yield fetch(a)).text();b={url:a,cssText:b};return Q[a]=b})}function S(a,b){return u(function*(){var d=a.cssText,c=/url\(["']?([^"')]+)["']?\)/g,e=(d.match(/url\([^)]+\)/g)||[]).map(f=>u(function*(){var g=f.replace(c,"$1");g.startsWith("https://")||(g=(new URL(g,a.url)).href);return G(g,b.l,({result:h})=>{d=d.replace(f,`url(${h})`);return[f,h]})}));return Promise.all(e).then(()=>d)})}
+function T(a){if(a==null)return[];var b=[];a=a.replace(/(\/\*[\s\S]*?\*\/)/gi,"");for(var d=RegExp("((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})","gi");;){var c=d.exec(a);if(c===null)break;b.push(c[0])}a=a.replace(d,"");d=/@import[\s\S]*?url\([^)]*\)[\s\S]*?;/gi;for(c=RegExp("((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})","gi");;){let e=d.exec(a);if(e===null)if(e=c.exec(a),e===null)break;else d.lastIndex=c.lastIndex;else c.lastIndex=
+d.lastIndex;b.push(e[0])}return b}
+function wa(a,b){return u(function*(){var d=[],c=[];a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach((f,g)=>{if(f.type===CSSRule.IMPORT_RULE){let h=g+1;f=R(f.href).then(l=>S(l,b)).then(l=>T(l).forEach(p=>{try{e.insertRule(p,p.startsWith("@import")?h+=1:e.cssRules.length)}catch(x){}})).catch(()=>{});c.push(f)}})}catch(f){let g=a.find(h=>h.href==null)||document.styleSheets[0];e.href!=null&&c.push(R(e.href).then(h=>S(h,b)).then(h=>T(h).forEach(l=>{g.insertRule(l,g.cssRules.length)})).catch(()=>
+{}))}});return Promise.all(c).then(()=>{a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach(f=>{d.push(f)})}catch(f){}});return d})})}function xa(a){return a.filter(b=>b.type===CSSRule.FONT_FACE_RULE).filter(b=>b.style.getPropertyValue("src").search(M)!==-1)}function ya(a,b){return u(function*(){if(a.ownerDocument==null)throw Error("Provided element is not within a Document");var d=yield wa(w(a.ownerDocument.styleSheets),b);return xa(d)})}
+function za(a){function b(c){(c.style.fontFamily||getComputedStyle(c).fontFamily).split(",").forEach(e=>{d.add(e.trim().replace(/["']/g,""))});Array.from(c.children).forEach(e=>{e instanceof HTMLElement&&b(e)})}var d=new Set;b(a);return d}function Aa(a,b){return u(function*(){var d=yield ya(a,b),c=za(a);return(yield Promise.all(d.filter(e=>c.has(e.style.fontFamily.trim().replace(/["']/g,""))).map(e=>N(e.cssText,e.parentStyleSheet?e.parentStyleSheet.href:null,b)))).join("\n")})}
+function Ba(a,b){return u(function*(){var d=b.m!=null?b.m:b.A?null:yield Aa(a,b);if(d){let c=document.createElement("style");c.appendChild(document.createTextNode(d));a.firstChild?a.insertBefore(c,a.firstChild):a.appendChild(c)}})};function Ca(a,b={}){return u(function*(){var {width:d,height:c}=B(a,b),e=yield L(a,b,!0);yield Ba(e,b);yield P(e,b);v(e,b);return yield ca(e,d,c)})}
+function Da(a,b={}){return u(function*(){var {width:d,height:c}=B(a,b),e=yield Ca(a,b);e=yield C(e);var f=document.createElement("canvas"),g=f.getContext("2d"),h=b.I||window.devicePixelRatio||1,l=b.j||d,p=b.i||c;f.width=l*h;f.height=p*h;!b.L&&(f.width>16384||f.height>16384)&&(f.width>16384&&f.height>16384?f.width>f.height?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=16384):f.width>16384?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=16384));
+f.style.width=`${l}`;f.style.height=`${p}`;b.backgroundColor&&(g.fillStyle=b.backgroundColor,g.fillRect(0,0,f.width,f.height));g.drawImage(e,0,0,f.width,f.height);return f})}function Ea(a,b={}){return u(function*(){return(yield Da(a,b)).toDataURL()})};const Fa=["gemini.google.com","corp.google.com","proxy.googlers.com"];function V(a){a=Number(a.replace(/px$/,""));return Number.isFinite(a)?a:0}function W(){return document.body.querySelectorAll('[class*="animate"]').length>0}function X(a,b){var d=document.createElement("canvas");d.width=a;d.height=b;return d.toDataURL("image/png")}const Y=X(1,1);
+function Z(a,b){return u(function*(){var d=Math.max(b?b.width:a.offsetWidth,1),c=Math.max(b?b.height:a.offsetHeight,1),e=HTMLCanvasElement.prototype.toDataURL;b&&(HTMLCanvasElement.prototype.toDataURL=function(f,g){var h;if(h=this.isConnected&&a.contains(this)){{let n=this.getBoundingClientRect();if(n.width===0||n.height===0)h=!1;else if(window.getComputedStyle(this).position==="fixed")h=n.bottom>0&&n.top<b.height&&n.right>0&&n.left<b.width;else{h=a.getBoundingClientRect();var l=n.top-h.top,p=n.left-
+h.left,x=n.right-h.left;h=n.bottom-h.top>b.scrollTop&&l<b.scrollTop+b.height&&x>b.scrollLeft&&p<b.scrollLeft+b.width}}h=!h}return h?"data:,":e.call(this,f,g)});try{let f=window.getComputedStyle(a),g=b?`${V(f.marginTop)-b.scrollTop}px`:void 0,h=b?`${V(f.marginLeft)-b.scrollLeft}px`:void 0,l=`${Math.max(a.offsetWidth,d)}px`,p,x=`${Math.max(a.offsetHeight,c+((p=b==null?void 0:b.scrollTop)!=null?p:0))}px`;return yield Ea(a,Object.assign({},{width:d,height:c,j:d,i:c},b?{style:{width:l,height:x,marginTop:g,
+marginLeft:h,marginBlockStart:g,marginInlineStart:h}}:{},{A:!0,filter:n=>{if(n.tagName==="IMG"){let U=n.getAttribute("src");if(!U||U.trim()===""||n.style.display==="none")return!1}return!0},o:Y,h:()=>Y}))}catch(f){return X(d,c)}finally{HTMLCanvasElement.prototype.toDataURL=e}})}
+function Ga(){return u(function*(){var a=document.body.offsetWidth,b=document.body.offsetHeight,d=document.body.cloneNode(!0);d.querySelectorAll('[class*="animate"]').forEach(c=>{c.classList.remove(...Array.from(c.classList).filter(e=>e.startsWith("animate")))});d.style.width=`${a}px`;d.style.height=`${b}px`;return d})}
+function Ha(a){return u(function*(){var b={width:window.innerWidth||document.documentElement.clientWidth||document.body.offsetWidth,height:window.innerHeight||document.documentElement.clientHeight||document.body.offsetHeight,scrollTop:window.scrollY||document.documentElement.scrollTop||document.body.scrollTop||0,scrollLeft:window.scrollX||document.documentElement.scrollLeft||document.body.scrollLeft||0},d=document.body;if(W()){let c=yield Ga();d=c;document.body.appendChild(c)}b=yield Z(d,b);W()&&
+document.body.removeChild(d);window.parent.postMessage({type:"SEND_SCREENSHOT",image:b,topOffset:0},a.origin)})}function Ia(a){return u(function*(){var b={type:"SEND_SCREENSHOT_FOR_DATA_VISUALIZATION",image:yield Z(document.body),topOffset:0};window.parent.postMessage(b,a.origin)})}window.addEventListener("message",a=>u(function*(){if(Fa.some(d=>a.origin.includes(d))){var b=a.data;b&&(b.type==="MAKE_SCREENSHOT"&&(yield Ha(a)),b.type==="MAKE_SCREENSHOT_FOR_DATA_VISUALIZATION"&&(yield Ia(a)))}}));
+})();</script><script data-bard-client-injected="true">(function() {
+  // Ensure this script is executed only once
+  if (window.firebaseAuthBridgeScriptLoaded) {
+    return;
+  }
+  window.firebaseAuthBridgeScriptLoaded = true;
+
+  let nextTokenPromiseId = 0;
+
+  // Stores { resolve, reject } for ongoing token requests
+  const pendingTokenPromises = {};
+
+  // Listen for messages from the Host Application
+  window.addEventListener('message', function(event) {
+
+    const messageData = event.data;
+
+  if (messageData && messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {
+      const { success, token, error, promiseId } = messageData ?? {};
+      if (pendingTokenPromises[promiseId]) {
+        if (success) {
+          pendingTokenPromises[promiseId].resolve(token);
+        } else {
+          pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));
+        }
+        delete pendingTokenPromises[promiseId];
+      }
+    }
+  });
+
+  // Expose a function for the Generated App to request a new Firebase token
+  window.requestNewFirebaseToken = function() {
+    const currentPromiseId = nextTokenPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingTokenPromises[currentPromiseId] = { resolve, reject };
+    });
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'REQUEST_NEW_FIREBASE_TOKEN',
+        promiseId: currentPromiseId
+      }, '*');
+    } else {
+      pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));
+      delete pendingTokenPromises[currentPromiseId];
+    }
+    return promise;
+  };
+})();</script><script data-bard-client-injected="true">
+let realOriginalGetUserMedia = null;
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+}
+
+(function() {
+  if (navigator.mediaDevices && navigator.mediaDevices.__proto__) {
+    try {
+      Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {
+        get: function() {
+          return undefined; // Or throw an error
+        },
+        configurable: false
+      });
+    } catch (error) {
+      console.error("Error defining prototype getter:", error);
+    }
+  }
+})();
+
+(function() {
+  const pendingMediaResolvers = {};
+  let nextMediaPromiseId = 0;
+
+  function requestMediaPermissions(constraints) {
+    const mediaPromiseId = nextMediaPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingMediaResolvers[mediaPromiseId] = (granted) => {
+        delete pendingMediaResolvers[mediaPromiseId];
+        resolve(granted);
+      };
+    });
+
+    window.parent.postMessage({
+      type: 'requestMediaPermission',
+      constraints: constraints,
+      promiseId: mediaPromiseId,
+    }, '*');
+
+    return promise;
+  }
+
+  let originalGetUserMedia = realOriginalGetUserMedia;
+
+  function interceptGetUserMedia() {
+    if (navigator.mediaDevices) {
+      Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+        value: function(constraints) {
+          return requestMediaPermissions(constraints).then((granted) => {
+            if (granted) {
+              if (originalGetUserMedia) {
+                return originalGetUserMedia(constraints);
+              } else {
+                throw new Error("Original getUserMedia not available.");
+              }
+            } else {
+              throw new DOMException('Permission denied', 'NotAllowedError');
+            }
+          });
+        },
+        writable: false,
+        configurable: false
+      });
+    }
+  }
+
+  interceptGetUserMedia();
+
+  const observer = new MutationObserver(function(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'reconfigured' && mutation.name === 'getUserMedia' && mutation.object === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'attributes' && mutation.attributeName === 'getUserMedia' && mutation.target === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'childList' && mutation.addedNodes) {
+        mutation.addedNodes.forEach(node => {
+          if (node === navigator.mediaDevices) {
+            interceptGetUserMedia();
+          }
+        });
+      }
+    }
+  });
+
+  function interceptSpeechRecognition() {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      return;
+    }
+
+    const OriginalSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const SpeechRecognitionWrapper = function(...args) {
+      const recognizer = new OriginalSpeechRecognition(...args);
+      const originalStart = recognizer.start.bind(recognizer);
+
+      recognizer.start = function() {
+        requestMediaPermissions({ audio: true }).then(granted => {
+          if (granted) {
+            originalStart();
+          } else {
+            const errorEvent = new SpeechRecognitionErrorEvent('error');
+            errorEvent.error = 'not-allowed'; // This is the standard error for permission denial.
+            recognizer.dispatchEvent(errorEvent);
+          }
+        });
+      };
+
+      return recognizer;
+    };
+
+    SpeechRecognitionWrapper.prototype = OriginalSpeechRecognition.prototype;
+    SpeechRecognitionWrapper.prototype.constructor = SpeechRecognitionWrapper;
+
+    if (window.SpeechRecognition) {
+      window.SpeechRecognition = SpeechRecognitionWrapper;
+    }
+    if (window.webkitSpeechRecognition) {
+      window.webkitSpeechRecognition = SpeechRecognitionWrapper;
+    }
+  }
+
+  interceptSpeechRecognition();
+
+  window.addEventListener('message', function(event) {
+    if (event.data) {
+      if (event.data.type === 'resolveMediaPermission') {
+        const { promiseId, granted } = event.data;
+        if (pendingMediaResolvers[promiseId]) {
+          pendingMediaResolvers[promiseId](granted);
+        }
+      }
+    }
+  });
+
+})();</script><script ws-interception-config="{&quot;parentOrigin&quot;:&quot;https://gemini.google.com&quot;,&quot;proxiedDomains&quot;:[]}" data-bard-client-injected="true">(function(){'use strict';var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,d,e){if(b==Array.prototype||b==Object.prototype)return b;b[d]=e.value;return b};function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var d=0;d<b.length;++d){var e=b[d];if(e&&e.Math==Math)return e}throw Error("Cannot find global object");}var w=v(this);
+function y(b,d){if(d)a:{var e=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var k=b[h];if(!(k in e))break a;e=e[k]}b=b[b.length-1];h=e[b];d=d(h);d!=h&&d!=null&&u(e,b,{configurable:!0,writable:!0,value:d})}}function z(b){function d(h){return b.next(h)}function e(h){return b.throw(h)}return new Promise(function(h,k){function m(n){n.done?h(n.value):Promise.resolve(n.value).then(d,e).then(m,k)}m(b.next())})}y("globalThis",function(b){return b||w});/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+function A(b,d){function e(){}e.prototype=d.prototype;b.i=d.prototype;b.prototype=new e;b.prototype.constructor=b;b.h=function(h,k,m){for(var n=Array(arguments.length-2),p=2;p<arguments.length;p++)n[p-2]=arguments[p];return d.prototype[k].apply(h,n)}};function B(b,d,e="*"){function h(a){if(typeof a==="string")return F.encode(a).buffer;if(a instanceof ArrayBuffer)return a.slice(0);if(ArrayBuffer.isView(a))return a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength);throw Error("Invalid data type");}function k(a){a=h(a);var f={type:"send",data:new Uint8Array(a)},g;(g=r)==null||g.postMessage(f,[a])}function m(){if(!r)throw Error("Data port not captured yet.");r.onmessage=a=>{if(a.data.type==="message"){a=new MessageEvent("message",{data:G.decode(a.data.data)});
+let f;(f=c.onmessage)==null||f.call(c,a);c.dispatchEvent(a)}}}function n(){if(!t)throw Error("Control port not captured yet.");t.onmessage=a=>{switch(a.data.type){case "open":l=1;var f=new Event("open"),g;(g=c.onopen)==null||g.call(c,f);c.dispatchEvent(f);q.forEach(H=>{k(H)});q=[];break;case "close":g=a.data;l=3;g=new CloseEvent("close",{code:g.code,reason:g.reason,wasClean:g.wasClean});(f=c.onclose)==null||f.call(c,g);c.dispatchEvent(g);break;case "error":l=3;f=new Event("error");let x;(x=c.onerror)==
+null||x.call(c,f);c.dispatchEvent(f)}}}function p(a){return z(function*(){var f=new MessageChannel;t=f.port1;var g=new MessageChannel;r=g.port1;n();m();window.parent.postMessage({type:"websocket_open",portOrdering:["control","data"],url:b,protocols:a||[],connectionId:I},e,[f.port2,g.port2])}())}var c=Reflect.construct(EventTarget,[],new.target);c.CONNECTING=0;c.OPEN=1;c.CLOSING=2;c.CLOSED=3;c.url=b;c.binaryType="arraybuffer";c.protocol="";c.extensions="";var l=0,t=null,r=null,q=[],F=new TextEncoder,
+G=new TextDecoder;c.onopen=null;c.onmessage=null;c.onclose=null;c.onerror=null;Object.defineProperty(c,"readyState",{get:()=>l,enumerable:!0,configurable:!0});Object.defineProperty(c,"bufferedAmount",{get:()=>{var a=0;q.forEach(f=>{a+=typeof f==="string"?f.length:f.byteLength});return a},enumerable:!0,configurable:!0});var I=function(){var a;return((a=globalThis.crypto)==null?0:a.randomUUID)?globalThis.crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,f=>{var g=Math.random()*
+16|0;return(f==="x"?g:g&3|8).toString(16)})}();c.send=a=>{if(l===1)a instanceof Blob?a.arrayBuffer().then(f=>{k(f)}):k(a);else if(l===0)if(typeof a==="string")q.push(a);else if(a instanceof ArrayBuffer||ArrayBuffer.isView(a))q.push(h(a));else throw Error("Sending Blob is not supported before the connection is open.");else console.debug("WebSocket send called in CLOSING or CLOSED state; ignored.")};c.close=(a=1E3,f="")=>{if(l!==2&&l!==3){l=2;a={type:"close",code:a,reason:f,wasClean:a===1E3};var g;
+(g=t)==null||g.postMessage(a)}};Promise.resolve().then(()=>p(d));return c}A(B,EventTarget);var C=document.currentScript,D=C==null?void 0:C.getAttribute("ws-interception-config");if(!D)throw Error("WebSocket Interceptor: Missing ws-interception-config attribute in the script tag.");var E=JSON.parse(D);if(!E.parentOrigin||typeof E.parentOrigin!=="string")throw Error("WebSocket Interceptor: Invalid parentOrigin in ws-interception-config");
+(function(b){var d=Object.getOwnPropertyDescriptor(window,"WebSocket");if(!d||d.writable||d.configurable)d=Object.assign(function(e,h){try{let k=(new URL(e)).hostname;if(b.proxiedDomains.some(m=>k===m||k.endsWith(`.${m}`)))return new B(e,h,b.parentOrigin)}catch(k){throw window.parent.postMessage({type:"websocket_blocked",url:e,reason:"blocked_invalid_url"},b.parentOrigin),new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");}window.parent.postMessage({type:"websocket_blocked",
+url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");},{CONNECTING:0,OPEN:1,CLOSING:2,CLOSED:3}),Object.defineProperty(window,"WebSocket",{value:d,writable:!1,configurable:!1})})({proxiedDomains:E.proxiedDomains||[],parentOrigin:E.parentOrigin});}).call(this);
+</script><script data-bard-client-injected="true">((function(modelInformation) {
+  const originalFetch = window.fetch;
+  // TODO: b/421908508 - Move these out of the script and match all generative AI model calls.
+  let googleLlmBaseApiUrls = [
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':streamGenerateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageEditModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageTransformModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.ttsModelName + ':generateContent',
+  ];
+  modelInformation.deprecatedTextModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+    );
+  });
+  modelInformation.deprecatedImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predict',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predictLongRunning',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedGenerateImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedImageTransformModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+
+  const pendingFetchResolvers = {};
+  let nextPromiseId = 0;
+
+  function handleStringInput(input, optionsArgument) {
+    const actualUrl = input;
+    const fetchCallArgs = [actualUrl, optionsArgument];
+    const effectiveOptions = optionsArgument || {};
+    const bodyForApiKeyCheck = effectiveOptions.body;
+    const bodyForPostMessage = effectiveOptions.body;
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  function handleRequestInput(input, optionsArgument) {
+    const actualUrl = input.url;
+    const fetchCallArgs = [input, optionsArgument];
+    const effectiveOptions = { method: input.method, headers: new Headers(input.headers) };
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (optionsArgument) {
+      if (optionsArgument.method) effectiveOptions.method = optionsArgument.method;
+      if (optionsArgument.headers) effectiveOptions.headers = new Headers(optionsArgument.headers);
+      if ('body' in optionsArgument) {
+        bodyForApiKeyCheck = optionsArgument.body;
+        bodyForPostMessage = optionsArgument.body;
+      } else {
+        bodyForApiKeyCheck = undefined;
+        bodyForPostMessage = input.body;
+      }
+    } else {
+      bodyForApiKeyCheck = undefined;
+      bodyForPostMessage = input.body;
+    }
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  window.fetch = function(input, optionsArgument) {
+    let actualUrl;
+    let fetchCallArgs;
+    let effectiveOptions = {};
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (typeof input === 'string') {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleStringInput(input, optionsArgument));
+    } else if (input instanceof Request) {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleRequestInput(input, optionsArgument));
+    } else {
+      return originalFetch.apply(window, [input, optionsArgument]);
+    }
+
+    effectiveOptions.method = effectiveOptions.method || 'GET';
+    if (!effectiveOptions.headers) {
+      effectiveOptions.headers = new Headers();
+    }
+
+
+    if (typeof actualUrl === 'string' && googleLlmBaseApiUrls.some((url) => actualUrl.startsWith(url))) {
+      let apiKeyIsNull = true;
+
+      const regex = new RegExp("models/([^:]+)");
+      const modelNameMatch = actualUrl.match(regex);
+      const modelName = modelNameMatch ? modelNameMatch[1] : 'unspecified';
+
+
+      try {
+        const urlObject = new URL(actualUrl);  // Use URL object for robust parsing
+        const apiKeyParam = urlObject.searchParams.get('key');
+        if (apiKeyParam) {
+          apiKeyIsNull = false;
+        }
+      } catch (e) {
+        // Continue checks even if URL parsing fails
+      }
+
+      if (apiKeyIsNull && effectiveOptions.headers) {
+        const h = new Headers(effectiveOptions.headers);
+        const apiKeyHeaderValue = h.get('X-API-Key') || h.get('x-api-key');
+        if (apiKeyHeaderValue) {
+          apiKeyIsNull = false;
+          return originalFetch.apply(window, fetchCallArgs);
+        }
+      }
+
+      if (apiKeyIsNull && effectiveOptions.method && ['POST', 'PUT', 'PATCH'].includes(effectiveOptions.method.toUpperCase()) && typeof bodyForApiKeyCheck === 'string') {
+        try {
+          const bodyData = JSON.parse(bodyForApiKeyCheck);
+          if (bodyData && bodyData.apiKey) {
+            apiKeyIsNull = false;
+            return originalFetch.apply(window, fetchCallArgs);
+          }
+        } catch (e) {
+          // Ignore JSON parsing errors
+        }
+      }
+
+      if(apiKeyIsNull) {
+        const promiseId = nextPromiseId++;
+        const promise = new Promise((resolve) => {
+          pendingFetchResolvers[promiseId] = (resolvedResponse) => {
+            delete pendingFetchResolvers[promiseId];
+            resolve(resolvedResponse);
+          };
+        });
+
+        let serializedBodyForPostMessage;
+        if (typeof bodyForPostMessage === 'string' || bodyForPostMessage == null) {
+            serializedBodyForPostMessage = bodyForPostMessage;
+        } else if (bodyForPostMessage instanceof ReadableStream) {
+            serializedBodyForPostMessage = null;
+        } else {
+            try {
+                serializedBodyForPostMessage = JSON.stringify(bodyForPostMessage);
+            } catch (e) {
+                serializedBodyForPostMessage = null;
+            }
+        }
+
+        const messageOptions = {
+            method: effectiveOptions.method,
+            headers: Object.fromEntries(new Headers(effectiveOptions.headers).entries()),
+            body: serializedBodyForPostMessage
+        };
+
+        window.parent.postMessage({
+          type: 'requestFetch',
+          url: actualUrl,
+          modelName: modelName,
+          options: messageOptions,
+          promiseId: promiseId,
+        }, '*');
+
+        return promise;
+      }
+      return originalFetch.apply(window, fetchCallArgs);
+    }
+    return originalFetch.apply(window, fetchCallArgs);
+  };
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'resolveFetch') {
+      const { promiseId, response } = event.data;
+      if (pendingFetchResolvers[promiseId]) {
+        try {
+          const reconstructedResponse = new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: new Headers(response.headers),
+          });
+          pendingFetchResolvers[promiseId](reconstructedResponse);
+        } catch (error) {
+          pendingFetchResolvers[promiseId](new Response(null, { status: 500, statusText: "Interceptor Response Reconstruction Error" }));
+        }
+      }
+    }
+  });
+
+}))({"textModelName":"gemini-3-flash-preview","imageModelName":"imagen-4.0-generate-001","imageEditModelName":"gemini-3.1-flash-image","imageTransformModelName":"gemini-3-pro-image","videoModelName":"veo-2.0-generate-001","ttsModelName":"gemini-2.5-flash-preview-tts","deprecatedTextModelNames":["gemini-2.0-flash","gemini-2.5-flash","gemini-2.5-flash-preview-04-17","gemini-2.5-flash-preview-05-20","gemini-2.5-flash-preview-09-2025"],"deprecatedImageModelNames":["imagen-3.0-generate-001","imagen-3.0-generate-002"],"deprecatedGenerateImageModelNames":["gemini-2.5-flash-image-preview","gemini-2.5-flash-image","gemini-3.1-flash-image-preview"],"deprecatedImageTransformModelNames":["gemini-3-pro-image-preview-11-2025"]})</script><script data-bard-client-injected="true">(function() {
+  const OVERLAY_SELECTOR =
+    'dialog[open], [role="dialog"], [role="alertdialog"], [role="menu"], [role="listbox"], [role="combobox"]';
+
+  function isVisibleOverlay(element) {
+    if (element.closest('[hidden], [aria-hidden="true"], [inert]')) {
+      return false;
+    }
+    if (window.getComputedStyle(element).visibility === 'hidden') {
+      return false;
+    }
+    for (let cur = element; cur; cur = cur.parentElement) {
+      if (window.getComputedStyle(cur).display === 'none') {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function hasOpenOverlay() {
+    const candidates = document.querySelectorAll(OVERLAY_SELECTOR);
+    for (let i = 0; i < candidates.length; i++) {
+      if (isVisibleOverlay(candidates[i])) {
+        return true;
+      }
+    }
+    try {
+      if (document.querySelector('[popover]:popover-open')) {
+        return true;
+      }
+    } catch (e) {
+      // Ignore engines that do not support :popover-open.
+    }
+    return false;
+  }
+
+  function isNonEmptySearchInput(target) {
+    return (
+      Boolean(target) &&
+      target.tagName === 'INPUT' &&
+      typeof target.type === 'string' &&
+      target.type.toLowerCase() === 'search' &&
+      typeof target.value === 'string' &&
+      target.value.length > 0
+    );
+  }
+
+  function shouldIgnoreEscape(event) {
+    return (
+      event.key !== 'Escape' ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.shiftKey ||
+      event.isComposing ||
+      event.repeat ||
+      event.keyCode === 229 ||
+      isNonEmptySearchInput(event.target)
+    );
+  }
+
+  let shouldIgnoreCaptureState = false;
+
+  window.addEventListener(
+    'keydown',
+    function(event) {
+      if (event.key === 'Escape') {
+        shouldIgnoreCaptureState =
+          hasOpenOverlay() || isNonEmptySearchInput(event.target);
+      }
+    },
+    {capture: true},
+  );
+
+  window.addEventListener('keydown', function(event) {
+    if (
+      shouldIgnoreEscape(event) ||
+      event.defaultPrevented ||
+      shouldIgnoreCaptureState
+    ) {
+      return;
+    }
+    const wasBlockedOnCapture = shouldIgnoreCaptureState;
+    queueMicrotask(function() {
+      if (event.defaultPrevented || wasBlockedOnCapture) {
+        return;
+      }
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({'type': 'escapeKey'}, '*');
+      }
+    });
+  });
+})();</script><script data-bard-client-injected="true">(function() {
+  function normalizeSlug(str) {
+    try {
+      return str
+        .trim()
+        .toLowerCase()
+        .replace(/[^p{L}p{N}s_-]/gu, '')
+        .replace(/s+/g, '-');
+    } catch (e) {
+      return str
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9s_-]/g, '')
+        .replace(/s+/g, '-');
+    }
+  }
+
+  function findTargetElement(hash) {
+    if (!hash || hash === '#') {
+      return null;
+    }
+    const rawId = hash.startsWith('#') ? hash.slice(1) : hash;
+    let decodedId = rawId;
+    try {
+      decodedId = decodeURIComponent(rawId);
+    } catch (e) {
+      // Ignore URI malformed errors.
+    }
+
+    // 1. Direct ID match (raw and decoded).
+    let target = document.getElementById(rawId) || document.getElementById(decodedId);
+    if (target) {
+      return target;
+    }
+
+    // 2. Name attribute match (<a name="...">).
+    try {
+      if (typeof CSS !== 'undefined' && CSS.escape) {
+        target =
+          document.querySelector('[name="' + CSS.escape(rawId) + '"]') ||
+          document.querySelector('[name="' + CSS.escape(decodedId) + '"]');
+      } else {
+        const namedElements = document.getElementsByName(rawId);
+        if (namedElements && namedElements.length > 0) {
+          return namedElements[0];
+        }
+      }
+    } catch (e) {
+      // Ignore querySelector syntax errors.
+    }
+    if (target) {
+      return target;
+    }
+
+    // 3. Match heading text by slug (for Markdown TOCs where headings lack explicit IDs).
+    const targetSlug = normalizeSlug(decodedId);
+    if (targetSlug) {
+      for (const heading of document.querySelectorAll('h1, h2, h3, h4, h5, h6')) {
+        if (normalizeSlug(heading.textContent || '') === targetSlug) {
+          return heading;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  document.addEventListener('click', function(event) {
+    const target = event.target;
+    const anchor = target && typeof target.closest === 'function' ? target.closest('a') : null;
+    if (!anchor) {
+      return;
+    }
+
+    const href = anchor.getAttribute('href');
+    if (
+      !href ||
+      href.trim().toLowerCase().startsWith('javascript:') ||
+      anchor.hasAttribute('download')
+    ) {
+      return;
+    }
+
+    // Check if the link is an in-page hash / anchor link.
+    if (href.startsWith('#')) {
+      event.preventDefault();
+      const targetElement = findTargetElement(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+      return;
+    }
+
+    // Check if the URL has the same origin/pathname but with a hash.
+    try {
+      const url = new URL(anchor.href, window.location.href);
+      if (
+        url.hash &&
+        url.origin === window.location.origin &&
+        url.pathname === window.location.pathname
+      ) {
+        event.preventDefault();
+        const targetElement = findTargetElement(url.hash);
+        if (targetElement) {
+          targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+        return;
+      }
+    } catch (e) {
+      // Fall through if URL parsing fails.
+    }
+
+    // For all external or full navigation links, prevent iframe-level navigation
+    // (which breaks in AGSA WebView or sandboxed iframes) and ensure they open
+    // safely in a new tab/window.
+    if (anchor.target !== '_blank') {
+      event.preventDefault();
+      window.open(anchor.href, '_blank', 'noopener,noreferrer');
+    }
+  }, {capture: true});
+})();</script><script data-bard-client-injected="true">(function(){'use strict';function a(){window.parent.postMessage({type:"interaction"},"*")}window.addEventListener("click",a,{capture:!0,passive:!0});window.addEventListener("touchstart",a,{capture:!0,passive:!0});window.addEventListener("keydown",a,{capture:!0,passive:!0});}).call(this);
+</script><script data-bard-client-injected="true">(function() {
+  const originalConsoleLog = console.log;
+  const originalConsoleError = console.error;
+
+    /**
+   * Normalizes an error event or a promise rejection reason into a structured error object.
+   * @param {*} errorEventOrReason The error object or reason.
+   * @return {object} Structured error data { message, name, stack }.
+   */
+  function getErrorObject(errorEventOrReason) {
+    if (errorEventOrReason instanceof Error) {
+      return {
+        message: errorEventOrReason.message,
+        name: errorEventOrReason.name,
+        stack: errorEventOrReason.stack,
+      };
+    }
+    // Fallback for non-Error objects.
+    try {
+      return {
+        message: JSON.stringify(errorEventOrReason),
+        name: 'UnknownErrorType',
+        stack: null,
+      };
+    } catch (e) {
+      return {
+        message: String(errorEventOrReason),
+        name: 'UnknownErrorTypeNonStringifiable',
+        stack: null,
+      };
+    }
+  }
+
+  /**
+   * Converts an array of arguments (from log/error) into a single string.
+   * Handles Error objects specially to include their message and stack.
+   * @param {Array<*>} args - Arguments passed to console methods.
+   * @return {string} A string representation of the arguments.
+   */
+  function stringifyArgs(args) {
+    return args
+      .map((arg) => {
+        if (arg instanceof Error) {
+          const {message, stack} = arg;
+          return `Error: ${message}${stack ? ('\nStack: ' + stack) : ''}`;
+        }
+        if (typeof arg === 'object' && arg !== null) {
+          try {
+            return JSON.stringify(arg);
+          } catch (error) {
+            return '[Circular Object]';
+          }
+        } else {
+          return String(arg);
+        }
+      })
+      .join(' ');
+  }
+
+  console.log = function(...args) {
+    const logString = stringifyArgs(args);
+    window.parent.postMessage({ type: 'log', message: logString }, '*');
+    originalConsoleLog.apply(console, args);
+  };
+
+  console.error = function(...args) {
+    let errorData;
+    if (args.length > 0 && args[0] instanceof Error) {
+      const err = args[0];
+      // If the first arg is an Error, capture its details.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        ...getErrorObject(err),
+        rawArgsString: stringifyArgs(args.slice(1)),
+        timestamp: new Date().toISOString(),
+      };
+    } else {
+      // If not an Error object, treat all args as a general error message.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        message: stringifyArgs(args),
+        name: 'ConsoleLoggedError',
+        stack: null,
+        timestamp: new Date().toISOString(),
+      };
+    }
+    window.parent.postMessage(errorData, '*');
+    originalConsoleError.apply(console, args);
+  };
+
+  // Listen for global unhandled synchronous errors.
+  window.addEventListener('error', function(event) {
+    const errorDetails = event.error ? getErrorObject(event.error) : {
+      message: event.message,
+      name: 'GlobalError',
+      stack: null,
+      filename: event.filename,
+      lineno: event.lineno,
+      colno: event.colno,
+    };
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'global',
+      ...errorDetails,
+      message: errorDetails.message || event.message,
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+  // Listen for unhandled promise rejections (asynchronous errors).
+  window.addEventListener('unhandledrejection', function(event) {
+    const errorDetails = getErrorObject(event.reason);
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'unhandledrejection',
+      ...errorDetails,
+      message: errorDetails.message || 'Unhandled Promise Rejection',
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPA Forge — Convertisseur IA &amp; Build macOS GitHub Actions</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #090d16;
+      color: #e2e8f0;
+    }
+    .drop-active {
+      border-color: #38bdf8 !important;
+      background-color: rgba(56, 189, 248, 0.08) !important;
+    }
+    pre::-webkit-scrollbar,
+    .scroll-thin::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    pre::-webkit-scrollbar-thumb,
+    .scroll-thin::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 9999px;
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, system-ui, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono, ui-monospace, monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.bottom-4{bottom:1rem}.right-4{right:1rem}.top-0{top:0px}.z-30{z-index:30}.z-50{z-index:50}.col-span-2{grid-column:span 2 / span 2}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-2\.5{margin-top:0.625rem}.mt-3{margin-top:0.75rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-11{height:2.75rem}.h-16{height:4rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-9{height:2.25rem}.max-h-48{max-height:12rem}.min-h-screen{min-height:100vh}.min-h-\[420px\]{min-height:420px}.w-11{width:2.75rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-9{width:2.25rem}.w-full{width:100%}.min-w-0{min-width:0px}.max-w-7xl{max-width:80rem}.max-w-md{max-width:28rem}.max-w-sm{max-width:24rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;user-select:none}.list-disc{list-style-type:disc}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.space-y-0\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.125rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.125rem * var(--tw-space-y-reverse))}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-auto{overflow:auto}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-nowrap{white-space:nowrap}.break-words{overflow-wrap:break-word}.break-all{word-break:break-all}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-amber-500\/30{border-color:rgb(245 158 11 / 0.3)}.border-emerald-500\/20{border-color:rgb(16 185 129 / 0.2)}.border-emerald-500\/30{border-color:rgb(16 185 129 / 0.3)}.border-rose-500\/40{border-color:rgb(244 63 94 / 0.4)}.border-sky-400{--tw-border-opacity:1;border-color:rgb(56 189 248 / var(--tw-border-opacity, 1))}.border-sky-500\/20{border-color:rgb(14 165 233 / 0.2)}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-slate-800\/80{border-color:rgb(30 41 59 / 0.8)}.border-transparent{border-color:transparent}.bg-amber-500\/10{background-color:rgb(245 158 11 / 0.1)}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/10{background-color:rgb(16 185 129 / 0.1)}.bg-emerald-500\/20{background-color:rgb(16 185 129 / 0.2)}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-indigo-600{--tw-bg-opacity:1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.bg-rose-500\/10{background-color:rgb(244 63 94 / 0.1)}.bg-sky-500{--tw-bg-opacity:1;background-color:rgb(14 165 233 / var(--tw-bg-opacity, 1))}.bg-sky-500\/10{background-color:rgb(14 165 233 / 0.1)}.bg-sky-500\/20{background-color:rgb(14 165 233 / 0.2)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-slate-800\/80{background-color:rgb(30 41 59 / 0.8)}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-slate-900\/70{background-color:rgb(15 23 42 / 0.7)}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23 / var(--tw-bg-opacity, 1))}.bg-slate-950\/50{background-color:rgb(2 6 23 / 0.5)}.bg-slate-950\/60{background-color:rgb(2 6 23 / 0.6)}.bg-slate-950\/70{background-color:rgb(2 6 23 / 0.7)}.bg-slate-950\/80{background-color:rgb(2 6 23 / 0.8)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.from-sky-500{--tw-gradient-from:#0ea5e9 var(--tw-gradient-from-position);--tw-gradient-to:rgb(14 165 233 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-indigo-600{--tw-gradient-to:#4f46e5 var(--tw-gradient-to-position)}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-2{padding-bottom:0.5rem}.pl-4{padding-left:1rem}.pt-1{padding-top:0.25rem}.pt-2{padding-top:0.5rem}.pt-3{padding-top:0.75rem}.text-center{text-align:center}.font-mono{font-family:JetBrains Mono, ui-monospace, monospace}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-0.025em}.text-amber-100{--tw-text-opacity:1;color:rgb(254 243 199 / var(--tw-text-opacity, 1))}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77 / var(--tw-text-opacity, 1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183 / var(--tw-text-opacity, 1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175 / var(--tw-text-opacity, 1))}.text-sky-300{--tw-text-opacity:1;color:rgb(125 211 252 / var(--tw-text-opacity, 1))}.text-sky-400{--tw-text-opacity:1;color:rgb(56 189 248 / var(--tw-text-opacity, 1))}.text-sky-500{--tw-text-opacity:1;color:rgb(14 165 233 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.placeholder-slate-500::placeholder{--tw-placeholder-opacity:1;color:rgb(100 116 139 / var(--tw-placeholder-opacity, 1))}.opacity-60{opacity:0.6}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-emerald-500\/20{--tw-shadow-color:rgb(16 185 129 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-sky-500\/20{--tw-shadow-color:rgb(14 165 233 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:border-sky-500\/60:hover{border-color:rgb(14 165 233 / 0.6)}.hover\:bg-emerald-400:hover{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.hover\:bg-indigo-500:hover{--tw-bg-opacity:1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.hover\:bg-sky-400:hover{--tw-bg-opacity:1;background-color:rgb(56 189 248 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.hover\:text-rose-400:hover{--tw-text-opacity:1;color:rgb(251 113 133 / var(--tw-text-opacity, 1))}.hover\:text-slate-200:hover{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.focus\:border-sky-500:focus{--tw-border-opacity:1;border-color:rgb(14 165 233 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-sky-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(14 165 233 / var(--tw-ring-opacity, 1))}@media (min-width: 640px){.sm\:col-span-1{grid-column:span 1 / span 1}.sm\:col-span-2{grid-column:span 2 / span 2}.sm\:mb-0{margin-bottom:0px}.sm\:inline{display:inline}.sm\:inline-flex{display:inline-flex}.sm\:hidden{display:none}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}.sm\:p-5{padding:1.25rem}.sm\:px-0{padding-left:0px;padding-right:0px}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pb-0{padding-bottom:0px}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}}</style></head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20 shrink-0">
+          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <h1 class="text-base sm:text-lg font-semibold tracking-tight text-white truncate">IPA Forge</h1>
+            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-sky-500/10 text-sky-400 border border-sky-500/20">
+              macOS GitHub Actions
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 truncate">Déposez vos fichiers → Conversion IA → Compilation .ipa non signée</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="btn-open-pages-modal" type="button" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-600 hover:bg-emerald-500 text-white transition">
+          Publier GitHub Pages
+        </button>
+        <button id="btn-load-demo" type="button" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+          Charger un exemple HTML
+        </button>
+        <button id="btn-download-zip" type="button" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+          </svg>
+          <span class="hidden sm:inline">Exporter Projet (.zip)</span>
+          <span class="sm:hidden">.zip</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+  <!-- GitHub Pages Publish Modal -->
+  <div id="gh-pages-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-5 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-semibold text-white">Publier ce site sur GitHub Pages</h3>
+        <button id="btn-close-pages-modal" type="button" class="text-slate-400 hover:text-white text-sm">✕</button>
+      </div>
+      <p class="text-xs text-slate-400 leading-relaxed">
+        Crée le dépôt GitHub, pousse l'outil (<code class="text-sky-300">index.html</code>) et active GitHub Pages. Nécessite un token avec le droit <code class="text-sky-300">repo</code>.
+      </p>
+      <div class="space-y-3">
+        <div>
+          <label for="pages-repo-name" class="block text-xs font-medium text-slate-300 mb-1">Nom du dépôt à créer ou mettre à jour</label>
+          <input id="pages-repo-name" type="text" value="ipa-forge" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-white focus:outline-none focus:border-sky-500">
+        </div>
+        <div>
+          <label for="pages-token" class="block text-xs font-medium text-slate-300 mb-1">GitHub Token (PAT avec droit <code>repo</code>)</label>
+          <input id="pages-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+        </div>
+      </div>
+      <div id="pages-error" class="hidden rounded-xl border border-rose-500/40 bg-rose-500/10 p-3 text-xs text-rose-300 break-words"></div>
+      <div id="pages-result" class="hidden rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs space-y-1">
+        <div class="text-emerald-300 font-semibold">Outil publié sur GitHub Pages (disponible sous 1-2 min) :</div>
+        <a id="pages-live-url" href="#pipeline" target="_blank" rel="noopener" class="text-sky-400 underline break-all"></a>
+      </div>
+      <div class="flex flex-wrap justify-between items-center gap-2 pt-1">
+        <button id="btn-download-index-html" type="button" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-200">Télécharger index.html</button>
+        <div class="flex gap-2">
+          <button id="btn-cancel-pages" type="button" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-200">Fermer</button>
+          <button id="btn-publish-pages" type="button" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold">Publier maintenant</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Left Column: Dropzone, Config, AI, GitHub Actions -->
+    <section class="lg:col-span-5 flex flex-col gap-5">
+      <!-- 1. File Dropzone -->
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 sm:p-5">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 text-xs flex items-center justify-center font-bold">1</span>
+            Déposer vos fichiers sources
+          </h2>
+          <button id="btn-clear-files" type="button" class="text-xs text-slate-400 hover:text-rose-400 transition hidden">
+            Tout effacer
+          </button>
+        </div>
+
+        <div id="dropzone" tabindex="0" role="button" aria-label="Zone de dépôt de fichiers" class="border-2 border-dashed border-slate-700 hover:border-sky-500/60 rounded-xl p-6 text-center cursor-pointer transition bg-slate-950/50">
+          <input id="file-input" type="file" multiple="" class="hidden" accept=".html,.htm,.css,.js,.ts,.jsx,.tsx,.json,.swift,.py,.txt,.md,.svg,.png,.jpg,.jpeg">
+          <div class="w-11 h-11 rounded-full bg-slate-800/80 mx-auto mb-3 flex items-center justify-center text-sky-400">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+            </svg>
+          </div>
+          <p class="text-sm font-medium text-slate-200">Glissez-déposez vos fichiers ici</p>
+          <p class="text-xs text-slate-400 mt-1">HTML, CSS, JS, Swift, JSON, images… ou cliquez pour parcourir</p>
+        </div>
+
+        <!-- Uploaded files list -->
+        <ul id="file-list" class="mt-3 space-y-2 max-h-48 overflow-y-auto scroll-thin"></ul>
+      </div>
+
+      <!-- 2. App & AI Conversion Settings -->
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4">
+        <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+          <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 text-xs flex items-center justify-center font-bold">2</span>
+          Configuration iOS &amp; Conversion IA
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="app-name" class="block text-xs font-medium text-slate-400 mb-1">Nom de l'app</label>
+            <input id="app-name" type="text" value="MonAppWeb" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-sky-500">
+            <p class="text-[11px] text-slate-500 mt-1">Nom court sans espaces ni accents (ex: MonAppWeb).</p>
+          </div>
+          <div>
+            <label for="bundle-id" class="block text-xs font-medium text-slate-400 mb-1">Bundle Identifier</label>
+            <input id="bundle-id" type="text" value="com.ipaforge.monapp" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-sm font-mono text-white focus:outline-none focus:border-sky-500">
+            <p class="text-[11px] text-slate-500 mt-1">Format domaine inversé unique : com.prenom.monapp</p>
+          </div>
+          <div>
+            <label for="app-version" class="block text-xs font-medium text-slate-400 mb-1">Version</label>
+            <input id="app-version" type="text" value="1.0.0" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-sm font-mono text-white focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label for="ios-target" class="block text-xs font-medium text-slate-400 mb-1">iOS minimum</label>
+            <select id="ios-target" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-sky-500">
+              <option value="15.0">iOS 15.0</option>
+              <option value="16.0" selected="">iOS 16.0</option>
+              <option value="17.0">iOS 17.0</option>
+              <option value="18.0">iOS 18.0</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Conversion Strategy -->
+        <div>
+          <label for="conversion-mode" class="block text-xs font-medium text-slate-400 mb-1">Mode de conversion du code</label>
+          <select id="conversion-mode" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-sky-500">
+            <option value="hybrid">Hybride intelligent (WKWebView + adaptation iOS)</option>
+            <option value="swiftui-ai">Transpilation IA vers SwiftUI natif (si possible)</option>
+            <option value="raw-swift">Projet Swift existant (générer XcodeGen + Workflow)</option>
+          </select>
+        </div>
+
+        <!-- Optional AI Provider -->
+        <div class="pt-2 border-t border-slate-800/80 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-slate-300">Moteur IA (optionnel pour transpilation avancée)</span>
+            <span id="ai-badge" class="text-[11px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">Mode local prêt</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <select id="ai-provider" class="px-2.5 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-sky-500">
+              <option value="local">Convertisseur intégré (sans clé)</option>
+              <option value="openai">OpenAI (gpt-4o-mini)</option>
+              <option value="gemini">Google Gemini (gemini-2.5-flash)</option>
+            </select>
+            <input id="ai-api-key" type="password" placeholder="Clé API (optionnel)" class="sm:col-span-2 px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+          </div>
+          <p class="text-[11px] text-slate-500">Laissez « Convertisseur intégré » sans clé API pour empaqueter votre HTML tel quel, ou choisissez OpenAI / Gemini avec votre clé pour convertir en SwiftUI natif.</p>
+          <div>
+            <label for="ai-prompt" class="block text-xs font-medium text-slate-400 mb-1">Instructions pour l'IA (optionnel)</label>
+            <input id="ai-prompt" type="text" placeholder="Ex: Ajouter un thème sombre natif et gérer les zones sûres iPhone..." class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+          </div>
+        </div>
+
+        <button id="btn-convert" type="button" class="w-full py-2.5 px-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+          Analyser &amp; Convertir le projet iOS
+        </button>
+      </div>
+
+      <!-- 3. GitHub Actions macOS Build -->
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 text-xs flex items-center justify-center font-bold">3</span>
+            Compilation macOS via GitHub Actions
+          </h2>
+          <label class="inline-flex items-center gap-1.5 cursor-pointer text-xs text-slate-300">
+            <input id="sim-mode" type="checkbox" class="rounded border-slate-700 bg-slate-950 text-sky-500 focus:ring-sky-500" checked="">
+            <span>Mode démo</span>
+          </label>
+        </div>
+
+        <details class="rounded-xl border border-slate-800 bg-slate-950/70 p-3 text-xs text-slate-300">
+          <summary class="cursor-pointer font-medium text-sky-400 select-none">Comment remplir les champs GitHub Actions ?</summary>
+          <ul class="mt-2.5 space-y-1.5 text-[11px] text-slate-400 list-disc pl-4 leading-relaxed">
+            <li><strong class="text-slate-200">Mode démo :</strong> cochez pour simuler la compilation localement. Décochez pour compiler réellement sur les serveurs <code class="text-sky-300">macos-latest</code> de GitHub.</li>
+            <li><strong class="text-slate-200">Dépôt GitHub :</strong> créez un dépôt vide sur GitHub et indiquez <code class="text-sky-300">votre-pseudo/nom-du-repo</code> (ex: <code class="text-slate-300">alex/mon-app-ios</code>).</li>
+            <li><strong class="text-slate-200">Branche :</strong> généralement <code class="text-sky-300">main</code> (vérifiez le nom de la branche par défaut de votre dépôt).</li>
+            <li><strong class="text-slate-200">GitHub Token (PAT) :</strong> allez dans <em>GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)</em>, générez un token en cochant les cases <code class="text-sky-300">repo</code> et <code class="text-sky-300">workflow</code>, puis collez-le ici.</li>
+          </ul>
+        </details>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="macos-runner" class="block text-xs font-medium text-slate-400 mb-1">Runner macOS GitHub</label>
+            <select id="macos-runner" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-sky-500">
+              <option value="macos-latest">macos-latest (macOS 26 Tahoe)</option>
+              <option value="macos-15">macos-15 (macOS 15 Sequoia)</option>
+            </select>
+          </div>
+          <div>
+            <label for="signing-mode" class="block text-xs font-medium text-slate-400 mb-1">Signature iOS</label>
+          <select id="signing-mode" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-sky-500">
+            <option value="unsigned">Non signée (.ipa brute pour re-signature / TrollStore)</option>
+            <option value="macos-vnc">Interface graphique macOS (VNC + Xcode — Apple ID gratuit 7 jours + 2FA)</option>
+            <option value="apple-p12">Signée Apple Developer (.p12 + .mobileprovision via Secrets)</option>
+            <option value="apple-api">Signée Apple Developer (App Store Connect API .p8 via Secrets)</option>
+          </select>
+          </div>
+        </div>
+
+        <div id="signing-secrets-guide" class="hidden rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-[11px] text-amber-100 space-y-1.5">
+          <div class="font-semibold text-amber-300">Secrets à ajouter sur GitHub (Settings → Secrets → Actions) :</div>
+          <div id="signing-secrets-list" class="font-mono text-[10px] text-slate-200 space-y-0.5"></div>
+          <p class="text-slate-300 leading-relaxed">Signé directement sur <code>macos-latest</code> avec Xcode : aucun serveur Anisette Windows requis (évite l'erreur -80046).</p>
+        </div>
+
+        <div id="github-fields" class="space-y-3 opacity-60 transition">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="gh-repo" class="block text-xs font-medium text-slate-400 mb-1">Dépôt GitHub (owner/repo)</label>
+              <input id="gh-repo" type="text" placeholder="monuser/mon-app-ios" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+            </div>
+            <div>
+              <label for="gh-branch" class="block text-xs font-medium text-slate-400 mb-1">Branche</label>
+              <input id="gh-branch" type="text" value="main" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-white focus:outline-none focus:border-sky-500">
+            </div>
+          </div>
+          <div>
+            <label for="gh-token" class="block text-xs font-medium text-slate-400 mb-1">GitHub Token (PAT avec droits <code>repo</code> &amp; <code>workflow</code>)</label>
+            <input id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+          </div>
+        </div>
+
+        <button id="btn-build-ipa" type="button" class="w-full py-2.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Lancer le build macOS (.ipa non signée)
+        </button>
+
+        <!-- Build Result Card -->
+        <div id="ipa-result-card" class="hidden rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3.5 space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
+              <span id="ipa-filename" class="text-xs font-mono font-semibold text-emerald-300 truncate">MonAppWeb-unsigned.ipa</span>
+            </div>
+            <span class="text-[11px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 shrink-0">Non signée</span>
+          </div>
+          <p id="ipa-meta" class="text-xs text-slate-300">Prête pour sideloading (AltStore, SideStore, TrollStore, Sideloadly).</p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <button id="btn-download-ipa" type="button" class="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-semibold transition">
+              Télécharger .ipa
+            </button>
+            <button id="btn-share-ipa" type="button" class="px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-semibold transition">
+              Partager / Sideloader (iOS)
+            </button>
+            <a id="link-gh-run" href="#pipeline" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition hidden" target="_blank" rel="noopener">
+              Voir sur GitHub
+            </a>
+          </div>
+          <details class="pt-2 border-t border-emerald-500/20 text-[11px] text-slate-300">
+            <summary class="cursor-pointer font-medium text-emerald-300 select-none">Sideloader via SideStore / AltStore (URL HTTPS)</summary>
+            <div class="mt-2 space-y-2">
+              <p class="text-slate-400 leading-relaxed">
+                Un navigateur ne peut pas signer ni installer une app en USB sans logiciel compagnon. Sur iPhone, utilisez <strong>Partager / Sideloader (iOS)</strong> vers AltStore/SideStore/TrollStore, ou collez l'URL HTTPS publique de votre .ipa (ex. GitHub Releases) :
+              </p>
+              <input id="sideload-ipa-url" type="url" placeholder="https://github.com/user/repo/releases/download/.../app.ipa" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-mono text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+              <div class="flex flex-wrap gap-2">
+                <button id="btn-open-sidestore" type="button" class="px-2.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition">Ouvrir dans SideStore</button>
+                <button id="btn-open-altstore" type="button" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium transition">Ouvrir dans AltStore</button>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Pipeline Progress, Code Inspector, Logs -->
+    <section class="lg:col-span-7 flex flex-col gap-5">
+      <!-- Pipeline Steps -->
+      <div id="pipeline" class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 sm:p-5">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-sm font-semibold text-white">Pipeline de compilation macOS</h2>
+          <span id="pipeline-status-badge" class="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-medium">En attente</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+          <div data-step="0" class="step-card p-3 rounded-xl border border-slate-800 bg-slate-950/60">
+            <div class="text-[11px] font-medium text-slate-400">Étape 1</div>
+            <div class="text-xs font-semibold text-slate-200 mt-0.5">Fichiers reçus</div>
+            <div class="step-state text-[11px] text-slate-500 mt-1">En attente</div>
+          </div>
+          <div data-step="1" class="step-card p-3 rounded-xl border border-slate-800 bg-slate-950/60">
+            <div class="text-[11px] font-medium text-slate-400">Étape 2</div>
+            <div class="text-xs font-semibold text-slate-200 mt-0.5">Conversion IA</div>
+            <div class="step-state text-[11px] text-slate-500 mt-1">En attente</div>
+          </div>
+          <div data-step="2" class="step-card p-3 rounded-xl border border-slate-800 bg-slate-950/60">
+            <div class="text-[11px] font-medium text-slate-400">Étape 3</div>
+            <div class="text-xs font-semibold text-slate-200 mt-0.5">Push GitHub</div>
+            <div class="step-state text-[11px] text-slate-500 mt-1">En attente</div>
+          </div>
+          <div data-step="3" class="step-card p-3 rounded-xl border border-slate-800 bg-slate-950/60">
+            <div class="text-[11px] font-medium text-slate-400">Étape 4</div>
+            <div class="text-xs font-semibold text-slate-200 mt-0.5">Runner macOS</div>
+            <div class="step-state text-[11px] text-slate-500 mt-1">En attente</div>
+          </div>
+          <div data-step="4" class="step-card p-3 rounded-xl border border-slate-800 bg-slate-950/60 col-span-2 sm:col-span-1">
+            <div class="text-[11px] font-medium text-slate-400">Étape 5</div>
+            <div class="text-xs font-semibold text-slate-200 mt-0.5">Package .ipa</div>
+            <div class="step-state text-[11px] text-slate-500 mt-1">En attente</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Generated Project & Code Viewer -->
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl flex flex-col overflow-hidden flex-1 min-h-[420px]">
+        <div class="border-b border-slate-800 px-4 pt-3 flex items-center justify-between gap-2 flex-wrap">
+          <div class="flex items-center gap-1 overflow-x-auto pb-2 sm:pb-0" id="code-tabs">
+            <button type="button" data-tab="workflow" class="tab-btn px-3 py-2 text-xs font-medium border-b-2 border-sky-400 text-sky-400 whitespace-nowrap">
+              build-unsigned-ipa.yml
+            </button>
+            <button type="button" data-tab="project" class="tab-btn px-3 py-2 text-xs font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
+              project.yml
+            </button>
+            <button type="button" data-tab="swift" class="tab-btn px-3 py-2 text-xs font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
+              ContentView.swift
+            </button>
+            <button type="button" data-tab="app" class="tab-btn px-3 py-2 text-xs font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
+              App.swift
+            </button>
+            <button type="button" data-tab="logs" class="tab-btn px-3 py-2 text-xs font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 whitespace-nowrap">
+              Journal d'exécution
+            </button>
+          </div>
+          <button id="btn-copy-code" type="button" class="mb-2 sm:mb-0 px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 transition">
+            Copier
+          </button>
+        </div>
+
+        <div class="flex-1 bg-slate-950 relative overflow-hidden flex flex-col">
+          <pre id="code-viewer" class="flex-1 p-4 text-xs font-mono text-slate-300 overflow-auto leading-relaxed"></pre>
+          <div id="logs-viewer" class="hidden flex-1 p-4 text-xs font-mono text-slate-300 overflow-auto space-y-1.5"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      files: [],
+      generated: {
+        workflow: '',
+        project: '',
+        swift: '',
+        app: '',
+        infoPlist: '',
+      },
+      activeTab: 'workflow',
+      logs: [],
+      lastRunUrl: '',
+      lastArtifactUrl: '',
+      demoIpaBlob: null,
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function showToast(msg, type = 'info') {
+      const container = $('toast-container');
+      const colors = {
+        info: 'bg-slate-800 border-slate-700 text-slate-100',
+        success: 'bg-emerald-950/90 border-emerald-500/40 text-emerald-200',
+        error: 'bg-rose-950/90 border-rose-500/40 text-rose-200',
+        warn: 'bg-amber-950/90 border-amber-500/40 text-amber-200',
+      };
+      const el = document.createElement('div');
+      el.className = `pointer-events-auto px-4 py-3 rounded-xl border text-xs font-medium shadow-xl transition ${colors[type] || colors.info}`;
+      el.textContent = msg;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.remove();
+      }, 4200);
+    }
+
+    function addLog(msg, level = 'info') {
+      const now = new Date().toLocaleTimeString('fr-FR', { hour12: false });
+      state.logs.push({ time: now, msg, level });
+      renderLogs();
+    }
+
+    function renderLogs() {
+      const box = $('logs-viewer');
+      box.innerHTML = '';
+      if (state.logs.length === 0) {
+        box.innerHTML = '<div class="text-slate-500">Aucun événement enregistré pour le moment.</div>';
+        return;
+      }
+      state.logs.forEach((entry) => {
+        const line = document.createElement('div');
+        const color =
+          entry.level === 'success' ? 'text-emerald-400' :
+          entry.level === 'error' ? 'text-rose-400' :
+          entry.level === 'warn' ? 'text-amber-400' : 'text-slate-300';
+        line.className = 'flex gap-2';
+        line.innerHTML = `<span class="text-slate-600 shrink-0">[${entry.time}]</span><span class="${color}"></span>`;
+        line.querySelector('span:last-child').textContent = entry.msg;
+        box.appendChild(line);
+      });
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function setStepState(stepIdx, status, label) {
+      const card = document.querySelector(`.step-card[data-step="${stepIdx}"]`);
+      if (!card) return;
+      const stateEl = card.querySelector('.step-state');
+      card.classList.remove('border-slate-800', 'border-sky-500/60', 'border-emerald-500/60', 'border-rose-500/60', 'bg-sky-500/5', 'bg-emerald-500/5');
+      stateEl.classList.remove('text-slate-500', 'text-sky-400', 'text-emerald-400', 'text-rose-400');
+
+      if (status === 'active') {
+        card.classList.add('border-sky-500/60', 'bg-sky-500/5');
+        stateEl.classList.add('text-sky-400');
+      } else if (status === 'done') {
+        card.classList.add('border-emerald-500/60', 'bg-emerald-500/5');
+        stateEl.classList.add('text-emerald-400');
+      } else if (status === 'error') {
+        card.classList.add('border-rose-500/60');
+        stateEl.classList.add('text-rose-400');
+      } else {
+        card.classList.add('border-slate-800');
+        stateEl.classList.add('text-slate-500');
+      }
+      stateEl.textContent = label;
+    }
+
+    function sanitizeAppName(raw) {
+      const cleaned = (raw || 'MonAppWeb').replace(/[^a-zA-Z0-9]/g, '');
+      return cleaned || 'MonAppWeb';
+    }
+
+    function generateWorkflowYaml(appName, signingMode = 'unsigned', bundleId = 'com.ipaforge.monapp', runnerOs = 'macos-latest') {
+      if (signingMode === 'apple-p12') {
+        return `name: Build Signed iOS IPA (.p12)
+
+on:
+  workflow_dispatch:
+    inputs:
+      app_name:
+        description: 'Nom de l application'
+        required: false
+        default: '${appName}'
+
+jobs:
+  build-signed-ipa:
+    name: Compiler et signer .ipa sur macOS
+    runs-on: ${runnerOs}
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Sélectionner Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+
+      - name: Installer XcodeGen si absent
+        run: |
+          if ! command -v xcodegen &> /dev/null; then
+            brew install xcodegen
+          fi
+
+      - name: Importer certificat .p12 et profil .mobileprovision
+        env:
+          APPLE_P12_BASE64: \${{ secrets.APPLE_P12_BASE64 }}
+          APPLE_P12_PASSWORD: \${{ secrets.APPLE_P12_PASSWORD }}
+          APPLE_PROVISION_BASE64: \${{ secrets.APPLE_PROVISION_BASE64 }}
+        run: |
+          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
+          KEYCHAIN_PASS="temp_keychain_pass"
+          security create-keychain -p "$KEYCHAIN_PASS" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASS" "$KEYCHAIN_PATH"
+          echo "$APPLE_P12_BASE64" | base64 --decode > "$RUNNER_TEMP/cert.p12"
+          security import "$RUNNER_TEMP/cert.p12" -P "$APPLE_P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+          security list-keychain -d user -s "$KEYCHAIN_PATH"
+          mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
+          echo "$APPLE_PROVISION_BASE64" | base64 --decode > "$HOME/Library/MobileDevice/Provisioning Profiles/profile.mobileprovision"
+
+      - name: Générer le projet .xcodeproj
+        run: xcodegen generate --spec project.yml
+
+      - name: Archiver et exporter l'IPA signée
+        env:
+          APPLE_TEAM_ID: \${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          xcodebuild archive \\
+            -project "${appName}.xcodeproj" \\
+            -scheme "${appName}" \\
+            -configuration Release \\
+            -archivePath build/${appName}.xcarchive \\
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID"
+
+          cat << 'PLIST' > ExportOptions.plist
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>development</string>
+            <key>teamID</key><string>${'${APPLE_TEAM_ID}'}</string>
+          </dict></plist>
+          PLIST
+
+          xcodebuild -exportArchive \\
+            -archivePath build/${appName}.xcarchive \\
+            -exportPath build/export \\
+            -exportOptionsPlist ExportOptions.plist
+          mv build/export/*.ipa "${appName}-signed.ipa"
+
+      - name: Publier l'artefact .ipa signée
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${appName}-signed-ipa
+          path: ${appName}-signed.ipa
+          retention-days: 14
+`;
+      }
+
+      if (signingMode === 'apple-api') {
+        return `name: Build Signed iOS IPA (App Store Connect API)
+
+on:
+  workflow_dispatch:
+    inputs:
+      app_name:
+        description: 'Nom de l application'
+        required: false
+        default: '${appName}'
+
+jobs:
+  build-signed-ipa-api:
+    name: Compiler et signer via App Store Connect API
+    runs-on: ${runnerOs}
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Sélectionner Xcode & XcodeGen
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          if ! command -v xcodegen &> /dev/null; then brew install xcodegen; fi
+          xcodegen generate --spec project.yml
+
+      - name: Archiver & signer automatiquement via API Apple (.p8)
+        env:
+          ASC_KEY_ID: \${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: \${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8_BASE64: \${{ secrets.ASC_KEY_P8_BASE64 }}
+          APPLE_TEAM_ID: \${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          echo "$ASC_KEY_P8_BASE64" | base64 --decode > "$RUNNER_TEMP/AuthKey.p8"
+          xcodebuild archive \\
+            -project "${appName}.xcodeproj" \\
+            -scheme "${appName}" \\
+            -configuration Release \\
+            -archivePath build/${appName}.xcarchive \\
+            -allowProvisioningUpdates \\
+            -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \\
+            -authenticationKeyID "$ASC_KEY_ID" \\
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \\
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID"
+
+          cat << 'PLIST' > ExportOptions.plist
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>development</string>
+            <key>teamID</key><string>${'${APPLE_TEAM_ID}'}</string>
+          </dict></plist>
+          PLIST
+
+          xcodebuild -exportArchive \\
+            -archivePath build/${appName}.xcarchive \\
+            -exportPath build/export \\
+            -exportOptionsPlist ExportOptions.plist \\
+            -allowProvisioningUpdates \\
+            -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \\
+            -authenticationKeyID "$ASC_KEY_ID" \\
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID"
+          mv build/export/*.ipa "${appName}-signed.ipa"
+
+      - name: Publier l'artefact .ipa signée
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${appName}-signed-ipa
+          path: ${appName}-signed.ipa
+          retention-days: 14
+`;
+      }
+
+      if (signingMode === 'macos-vnc') {
+        return `name: Build Signed iOS IPA (macOS GUI / VNC + 2FA)
+
+on:
+  workflow_dispatch:
+    inputs:
+      app_name:
+        description: 'Nom de l application'
+        required: false
+        default: '${appName}'
+
+jobs:
+  build-ipa-vnc:
+    name: Interface graphique macOS (Xcode + Apple ID gratuit 7j)
+    runs-on: ${runnerOs}
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer XcodeGen & RustDesk
+        run: |
+          if ! command -v xcodegen &> /dev/null; then brew install xcodegen; fi
+          brew install --cask rustdesk
+          xcodegen generate --spec project.yml
+
+      - name: Démarrer RustDesk (service root), ouvrir Xcode et attendre la validation 2FA
+        run: |
+          RD_BIN="/Applications/RustDesk.app/Contents/MacOS/RustDesk"
+          xattr -dr com.apple.quarantine /Applications/RustDesk.app || true
+          sudo "$RD_BIN" --install-service || true
+          open -a RustDesk || sudo "$RD_BIN" --server > /tmp/rustdesk.log 2>&1 &
+          sleep 5
+
+          sudo "$RD_BIN" --password "IpaForge2026!"
+          sleep 5
+          RD_ID=$(sudo "$RD_BIN" --get-id 2>/dev/null | xargs || true)
+
+          cat << 'CMD' > "$HOME/Desktop/Terminer_et_Compiler.command"
+          #!/bin/bash
+          touch /tmp/continue_build
+          echo "Compilation relancée ! Vous pouvez fermer cette fenêtre."
+          CMD
+          chmod +x "$HOME/Desktop/Terminer_et_Compiler.command"
+
+          cat << 'GUIDE' > "$HOME/Desktop/INSTRUCTIONS_XCODE.md"
+          # Guide rapide dans cette VM macOS
+
+          1. Connecter votre compte Apple dans Xcode :
+             - Barre du haut : Xcode -> Settings... -> onglet Accounts
+             - Cliquez sur "+" en bas à gauche -> Apple Account -> Continue
+             - Entrez votre Apple ID + mot de passe + code 2FA recu sur iPhone
+             - Fermez Settings une fois "Personal Team" affiche
+
+          2. Activer la signature sur le projet :
+             - Panneau gauche d'Xcode : cliquez sur le projet (${appName}) tout en haut
+             - Sous TARGETS : selectionnez ${appName} -> onglet Signing & Capabilities
+             - Cochez "Automatically manage signing"
+             - Dans "Team", choisissez votre "Personal Team"
+             - En haut d'Xcode (a cote du bouton Play), verifiez "Any iOS Device (arm64)"
+
+          3. Lancer la compilation finale :
+             - Allez sur le Bureau (Desktop)
+             - Double-cliquez sur "Terminer_et_Compiler.command"
+             - Attendez la fin du workflow pour telecharger votre .ipa
+          GUIDE
+
+          open -a TextEdit "$HOME/Desktop/INSTRUCTIONS_XCODE.md" || open "$HOME/Desktop/INSTRUCTIONS_XCODE.md" || true
+          open "${appName}.xcodeproj"
+          echo "========================================================"
+          echo "CONNECTEZ-VOUS AVEC RUSTDESK (Portable Windows / Web) :"
+          echo "ID RustDesk : ${'${RD_ID:-Indisponible (voir /tmp/rustdesk.log)}'}"
+          echo "Mot de passe : IpaForge2026!"
+          echo "1. Dans Xcode -> Settings -> Accounts : connectez votre Apple ID + 2FA"
+          echo "2. Dans Signing & Capabilities : sélectionnez votre Team (Personal Team)"
+          echo "3. Double-cliquez sur Terminer_et_Compiler.command sur le Bureau"
+          echo "========================================================"
+
+          while [ ! -f /tmp/continue_build ]; do sleep 5; done
+
+      - name: Compiler et empaqueter l'IPA signée 7 jours
+        run: |
+          xcodebuild \\
+            -project "${appName}.xcodeproj" \\
+            -scheme "${appName}" \\
+            -configuration Release \\
+            -sdk iphoneos \\
+            -derivedDataPath build \\
+            -allowProvisioningUpdates \\
+            clean build
+
+          mkdir -p Payload
+          cp -R "build/Build/Products/Release-iphoneos/${appName}.app" Payload/
+          zip -qry "${appName}-signed-7d.ipa" Payload
+
+      - name: Publier l'artefact .ipa signée
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${appName}-signed-7d-ipa
+          path: ${appName}-signed-7d.ipa
+          retention-days: 14
+`;
+      }
+
+      return `name: Build Unsigned iOS IPA
+
+on:
+  workflow_dispatch:
+    inputs:
+      app_name:
+        description: 'Nom de l application'
+        required: false
+        default: '${appName}'
+
+jobs:
+  build-unsigned-ipa:
+    name: Compiler .ipa non signée sur macOS
+    runs-on: ${runnerOs}
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Sélectionner Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+
+      - name: Installer XcodeGen si absent
+        run: |
+          if ! command -v xcodegen &> /dev/null; then
+            brew install xcodegen
+          fi
+
+      - name: Générer le projet .xcodeproj
+        run: |
+          xcodegen generate --spec project.yml
+
+      - name: Compiler l'application iOS sans signature
+        run: |
+          xcodebuild \\
+            -project "${appName}.xcodeproj" \\
+            -scheme "${appName}" \\
+            -configuration Release \\
+            -sdk iphoneos \\
+            -derivedDataPath build \\
+            CODE_SIGN_IDENTITY="" \\
+            CODE_SIGNING_REQUIRED=NO \\
+            CODE_SIGNING_ALLOWED=NO \\
+            AD_HOC_CODE_SIGNING_ALLOWED=YES \\
+            clean build
+
+      - name: Empaqueter le fichier .ipa non signé
+        run: |
+          mkdir -p Payload
+          cp -R "build/Build/Products/Release-iphoneos/${appName}.app" Payload/
+          zip -qry "${appName}-unsigned.ipa" Payload
+          ls -lh "${appName}-unsigned.ipa"
+
+      - name: Publier l'artefact .ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${appName}-unsigned-ipa
+          path: ${appName}-unsigned.ipa
+          retention-days: 14
+`;
+    }
+
+    function generateProjectYml(appName, bundleId, version, iosTarget, signingMode = 'unsigned') {
+      const signingSettings = signingMode === 'unsigned'
+        ? `        CODE_SIGN_IDENTITY: ""
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGNING_ALLOWED: NO`
+        : `        CODE_SIGN_STYLE: Automatic`;
+      return `name: ${appName}
+options:
+  bundleIdPrefix: ${bundleId.split('.').slice(0, -1).join('.') || 'com.ipaforge'}
+  deploymentTarget:
+    iOS: "${iosTarget}"
+
+targets:
+  ${appName}:
+    type: application
+    platform: iOS
+    deploymentTarget: "${iosTarget}"
+    sources:
+      - path: Sources
+    resources:
+      - path: WebContent
+        type: folder
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ${bundleId}
+        MARKETING_VERSION: "${version}"
+        CURRENT_PROJECT_VERSION: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+${signingSettings}
+        SWIFT_VERSION: "5.0"
+`;
+    }
+
+    function generateAppSwift(appName) {
+      return `import SwiftUI
+
+@main
+struct ${appName}App: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
+`;
+    }
+
+    function generateWebViewSwift(hasHtml) {
+      if (!hasHtml) {
+        return `import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "hammer.fill")
+                .font(.system(size: 44))
+                .foregroundStyle(.blue)
+            Text("Application prête")
+                .font(.title2.bold())
+            Text("Déposez un fichier HTML ou Swift pour personnaliser cette vue.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+        }
+    }
+}
+`;
+      }
+      return `import SwiftUI
+import WebKit
+
+struct WebContainerView: UIViewRepresentable {
+    func makeUIView(context: Context) -> WKWebView {
+        let config = WKWebViewConfiguration()
+        config.allowsInlineMediaPlayback = true
+        config.defaultWebpagePreferences.allowsContentJavaScript = true
+
+        let webView = WKWebView(frame: .zero, configuration: config)
+        webView.scrollView.contentInsetAdjustmentBehavior = .automatic
+        webView.isOpaque = false
+        webView.backgroundColor = .systemBackground
+
+        if let indexURL = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "WebContent") {
+            webView.loadFileURL(indexURL, allowingReadAccessTo: indexURL.deletingLastPathComponent())
+        }
+        return webView
+    }
+
+    func updateUIView(_ uiView: WKWebView, context: Context) {}
+}
+
+struct ContentView: View {
+    var body: some View {
+        WebContainerView()
+            .ignoresSafeArea(.container, edges: .bottom)
+    }
+}
+`;
+    }
+
+    function refreshGeneratedFiles(customSwift = null) {
+      const appName = sanitizeAppName($('app-name').value);
+      const bundleId = $('bundle-id').value.trim() || 'com.ipaforge.monapp';
+      const version = $('app-version').value.trim() || '1.0.0';
+      const iosTarget = $('ios-target').value;
+      const hasHtml = state.files.some((f) => /\.html?$/i.test(f.name));
+      const existingSwift = state.files.find((f) => /ContentView\.swift$/i.test(f.name));
+
+      const signingMode = $('signing-mode') ? $('signing-mode').value : 'unsigned';
+      const runnerOs = $('macos-runner') ? $('macos-runner').value : 'macos-latest';
+      state.generated.workflow = generateWorkflowYaml(appName, signingMode, bundleId, runnerOs);
+      state.generated.project = generateProjectYml(appName, bundleId, version, iosTarget, signingMode);
+      state.generated.app = generateAppSwift(appName);
+      state.generated.swift = customSwift || (existingSwift ? existingSwift.content : generateWebViewSwift(hasHtml || state.files.length === 0));
+
+      renderCodeTab();
+    }
+
+    function renderCodeTab() {
+      const tab = state.activeTab;
+      const codeViewer = $('code-viewer');
+      const logsViewer = $('logs-viewer');
+
+      document.querySelectorAll('.tab-btn').forEach((btn) => {
+        const active = btn.dataset.tab === tab;
+        btn.classList.toggle('border-sky-400', active);
+        btn.classList.toggle('text-sky-400', active);
+        btn.classList.toggle('border-transparent', !active);
+        btn.classList.toggle('text-slate-400', !active);
+      });
+
+      if (tab === 'logs') {
+        codeViewer.classList.add('hidden');
+        logsViewer.classList.remove('hidden');
+        $('btn-copy-code').classList.add('hidden');
+      } else {
+        logsViewer.classList.add('hidden');
+        codeViewer.classList.remove('hidden');
+        $('btn-copy-code').classList.remove('hidden');
+        codeViewer.textContent = state.generated[tab] || '';
+      }
+    }
+
+    function renderFileList() {
+      const list = $('file-list');
+      const clearBtn = $('btn-clear-files');
+      list.innerHTML = '';
+      clearBtn.classList.toggle('hidden', state.files.length === 0);
+
+      state.files.forEach((file, idx) => {
+        const li = document.createElement('li');
+        li.className = 'flex items-center justify-between gap-2 px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs';
+        const kb = Math.max(0.1, file.size / 1024).toFixed(1);
+        li.innerHTML = `
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-300 font-mono text-[10px] uppercase shrink-0"></span>
+            <span class="text-slate-200 truncate font-medium"></span>
+            <span class="text-slate-500 shrink-0">${kb} Ko</span>
+          </div>
+          <button type="button" data-remove="${idx}" class="text-slate-500 hover:text-rose-400 transition shrink-0" title="Supprimer">✕</button>
+        `;
+        const ext = (file.name.split('.').pop() || 'file').slice(0, 6);
+        li.querySelector('span:first-child').textContent = ext;
+        li.querySelector('span:nth-child(2)').textContent = file.name;
+        list.appendChild(li);
+      });
+
+      if (state.files.length > 0) {
+        setStepState(0, 'done', `${state.files.length} fichier(s)`);
+      } else {
+        setStepState(0, 'idle', 'En attente');
+      }
+    }
+
+    async function handleFiles(fileList) {
+      const incoming = Array.from(fileList);
+      for (const f of incoming) {
+        const isText = /\.(html?|css|js|ts|jsx|tsx|json|swift|py|txt|md|svg)$/i.test(f.name);
+        const content = isText ? await f.text() : await f.arrayBuffer();
+        const existingIdx = state.files.findIndex((item) => item.name === f.name);
+        const entry = { name: f.name, size: f.size, isText, content };
+        if (existingIdx >= 0) {
+          state.files[existingIdx] = entry;
+        } else {
+          state.files.push(entry);
+        }
+      }
+      renderFileList();
+      refreshGeneratedFiles();
+      addLog(`${incoming.length} fichier(s) chargé(s) dans l'espace de travail.`, 'success');
+      showToast(`${incoming.length} fichier(s) ajouté(s)`, 'success');
+    }
+
+    async function runAiConversion() {
+      if (state.files.length === 0) {
+        showToast('Déposez d’abord au moins un fichier (ex: index.html).', 'warn');
+        return;
+      }
+
+      const mode = $('conversion-mode').value;
+      const provider = $('ai-provider').value;
+      const apiKey = $('ai-api-key').value.trim();
+      const instructions = $('ai-prompt').value.trim();
+      const appName = sanitizeAppName($('app-name').value);
+
+      setStepState(1, 'active', 'Conversion…');
+      $('pipeline-status-badge').textContent = 'Conversion IA en cours';
+      addLog(`Démarrage de la conversion (${mode}, moteur: ${provider})...`);
+
+      const textSummary = state.files
+        .filter((f) => f.isText)
+        .map((f) => `--- ${f.name} ---\n${f.content.slice(0, 8000)}`)
+        .join('\n\n');
+
+      if (provider !== 'local' && apiKey) {
+        try {
+          const systemPrompt = `Tu es un expert iOS SwiftUI. Convertis ou adapte le projet fourni pour iOS (${mode}). Retourne UNIQUEMENT le code Swift complet de ContentView.swift sans balises markdown.`;
+          const userPrompt = `Nom de l'app: ${appName}\nInstructions supplémentaires: ${instructions || 'Aucune'}\n\nFichiers:\n${textSummary}`;
+          let swiftOut = '';
+
+          if (provider === 'openai') {
+            const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${apiKey}`,
+              },
+              body: JSON.stringify({
+                model: 'gpt-4o-mini',
+                messages: [
+                  { role: 'system', content: systemPrompt },
+                  { role: 'user', content: userPrompt },
+                ],
+                temperature: 0.2,
+              }),
+            });
+            if (!resp.ok) throw new Error(`OpenAI HTTP ${resp.status}`);
+            const data = await resp.json();
+            swiftOut = data.choices?.[0]?.message?.content || '';
+          } else if (provider === 'gemini') {
+            const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: `${systemPrompt}\n\n${userPrompt}` }] }],
+              }),
+            });
+            if (!resp.ok) throw new Error(`Gemini HTTP ${resp.status}`);
+            const data = await resp.json();
+            swiftOut = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          }
+
+          swiftOut = swiftOut.replace(/^```swift\s*/i, '').replace(/```$/i, '').trim();
+          if (swiftOut) {
+            refreshGeneratedFiles(swiftOut);
+            setStepState(1, 'done', 'IA appliquée');
+            $('pipeline-status-badge').textContent = 'Prêt pour compilation';
+            addLog('Code SwiftUI généré par le modèle IA.', 'success');
+            showToast('Conversion IA terminée', 'success');
+            state.activeTab = 'swift';
+            renderCodeTab();
+            return;
+          }
+        } catch (err) {
+          addLog(`Erreur API IA (${err.message}), bascule sur le convertisseur intégré.`, 'warn');
+          showToast('Erreur API IA, bascule en mode intégré.', 'warn');
+        }
+      }
+
+      // Deterministic local conversion / wrapper
+      await new Promise((r) => setTimeout(r, 500));
+      refreshGeneratedFiles();
+      setStepState(1, 'done', 'Converti');
+      $('pipeline-status-badge').textContent = 'Prêt pour compilation';
+      addLog('Projet iOS (XcodeGen + SwiftUI/WKWebView + GitHub Actions macOS) généré.', 'success');
+      showToast('Projet iOS généré avec succès', 'success');
+      state.activeTab = 'swift';
+      renderCodeTab();
+    }
+
+    async function buildProjectZipBlob() {
+      const zip = new JSZip();
+      const appName = sanitizeAppName($('app-name').value);
+
+      zip.file('.github/workflows/build-unsigned-ipa.yml', state.generated.workflow);
+      zip.file('project.yml', state.generated.project);
+      zip.file('Sources/App.swift', state.generated.app);
+      zip.file('Sources/ContentView.swift', state.generated.swift);
+
+      const hasHtml = state.files.some((f) => /\.html?$/i.test(f.name));
+      if (!hasHtml) {
+        zip.file('WebContent/index.html', `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><h1>${appName}</h1></body></html>`);
+      }
+
+      state.files.forEach((f) => {
+        if (/\.swift$/i.test(f.name)) {
+          zip.file(`Sources/${f.name}`, f.content);
+        } else {
+          const targetName = /^index\.html?$/i.test(f.name) ? 'index.html' : f.name;
+          zip.file(`WebContent/${targetName}`, f.content);
+        }
+      });
+
+      return zip.generateAsync({ type: 'blob' });
+    }
+
+    function triggerDownload(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    async function githubPutFile(repo, branch, token, path, contentStrOrBytes, isBinary = false) {
+      const apiBase = `https://api.github.com/repos/${repo}/contents/${path}`;
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+      };
+
+      let sha = undefined;
+      const checkResp = await fetch(`${apiBase}?ref=${encodeURIComponent(branch)}&_t=${Date.now()}`, { headers, cache: 'no-store' });
+      if (checkResp.ok) {
+        const existing = await checkResp.json();
+        sha = existing.sha;
+      }
+
+      let b64 = '';
+      if (isBinary) {
+        const bytes = new Uint8Array(contentStrOrBytes);
+        let bin = '';
+        for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        b64 = btoa(bin);
+      } else {
+        b64 = btoa(unescape(encodeURIComponent(contentStrOrBytes)));
+      }
+
+      const putResp = await fetch(apiBase, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({
+          message: `IPA Forge: update ${path}`,
+          content: b64,
+          branch,
+          sha,
+        }),
+      });
+      if (!putResp.ok) {
+        const errBody = await putResp.text();
+        throw new Error(`GitHub PUT ${path}: ${putResp.status} ${errBody.slice(0, 120)}`);
+      }
+    }
+
+    async function startMacOsBuild() {
+      if (state.files.length === 0) {
+        showToast('Déposez d’abord un fichier ou chargez l’exemple.', 'warn');
+        return;
+      }
+
+      const appName = sanitizeAppName($('app-name').value);
+      const isDemo = $('sim-mode').checked;
+      refreshGeneratedFiles();
+
+      $('ipa-result-card').classList.add('hidden');
+      state.activeTab = 'logs';
+      renderCodeTab();
+
+      if (isDemo) {
+        $('pipeline-status-badge').textContent = 'Compilation macOS (Démo)';
+        setStepState(1, 'done', 'Converti');
+        setStepState(2, 'active', 'Envoi…');
+        addLog('Mode démo : préparation des fichiers pour GitHub Actions...');
+        await new Promise((r) => setTimeout(r, 700));
+        setStepState(2, 'done', 'Commit prêt');
+        addLog('Workflow .github/workflows/build-unsigned-ipa.yml envoyé sur main.', 'success');
+
+        setStepState(3, 'active', 'macos-latest…');
+        addLog('Runner GitHub Actions macos-latest démarré : xcodegen generate + xcodebuild Release (CODE_SIGNING_ALLOWED=NO)...');
+        await new Promise((r) => setTimeout(r, 1100));
+        setStepState(3, 'done', 'Compilé');
+        addLog(`Build réussi : build/Build/Products/Release-iphoneos/${appName}.app`, 'success');
+
+        setStepState(4, 'active', 'Empaquetage…');
+        await new Promise((r) => setTimeout(r, 600));
+
+        // Create a realistic Payload/<App>.app ZIP structure as a demo .ipa package
+        const ipaZip = new JSZip();
+        ipaZip.file(`Payload/${appName}.app/Info.plist`, `<plist><dict><key>CFBundleName</key><string>${appName}</string></dict></plist>`);
+        ipaZip.file(`Payload/${appName}.app/README.txt`, 'Archive de démonstration générée en mode démo. Pour une vraie compilation binaire ARM64, décochez "Mode démo" avec votre dépôt GitHub.');
+        state.demoIpaBlob = await ipaZip.generateAsync({ type: 'blob' });
+
+        setStepState(4, 'done', 'Prête');
+        $('pipeline-status-badge').textContent = 'Terminé';
+        $('ipa-filename').textContent = `${appName}-unsigned.ipa`;
+        $('ipa-meta').textContent = 'Archive générée en mode démo (décochez Mode démo + ajoutez votre PAT GitHub pour le binaire ARM64 réel sur macos-latest).';
+        $('link-gh-run').classList.add('hidden');
+        $('ipa-result-card').classList.remove('hidden');
+        addLog(`${appName}-unsigned.ipa prête au téléchargement.`, 'success');
+        showToast(`${appName}-unsigned.ipa générée !`, 'success');
+        return;
+      }
+
+      // Real GitHub Actions execution
+      const repo = $('gh-repo').value.trim();
+      const branch = $('gh-branch').value.trim() || 'main';
+      const token = $('gh-token').value.trim();
+
+      if (!repo || !repo.includes('/') || !token) {
+        showToast('Renseignez le dépôt (owner/repo) et le token GitHub.', 'error');
+        return;
+      }
+
+      try {
+        $('pipeline-status-badge').textContent = 'Envoi vers GitHub…';
+        setStepState(2, 'active', 'Push API…');
+        addLog(`Envoi du projet vers ${repo} (${branch})...`);
+
+        await githubPutFile(repo, branch, token, '.github/workflows/build-unsigned-ipa.yml', state.generated.workflow);
+        await githubPutFile(repo, branch, token, 'project.yml', state.generated.project);
+        await githubPutFile(repo, branch, token, 'Sources/App.swift', state.generated.app);
+        await githubPutFile(repo, branch, token, 'Sources/ContentView.swift', state.generated.swift);
+
+        for (const f of state.files) {
+          const targetPath = /\.swift$/i.test(f.name)
+            ? `Sources/${f.name}`
+            : `WebContent/${/^index\.html?$/i.test(f.name) ? 'index.html' : f.name}`;
+          await githubPutFile(repo, branch, token, targetPath, f.content, !f.isText);
+        }
+
+        setStepState(2, 'done', 'Poussé');
+        addLog('Fichiers poussés sur GitHub. Déclenchement de workflow_dispatch...', 'success');
+
+        const dispatchResp = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/build-unsigned-ipa.yml/dispatches`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/vnd.github+json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ref: branch, inputs: { app_name: appName } }),
+        });
+        if (!dispatchResp.ok) throw new Error(`Dispatch HTTP ${dispatchResp.status}`);
+
+        setStepState(3, 'active', 'En file…');
+        $('pipeline-status-badge').textContent = 'Build macOS en cours';
+        addLog('Workflow macOS déclenché. Suivi du statut en direct...');
+
+        let run = null;
+        for (let attempt = 0; attempt < 40; attempt++) {
+          await new Promise((r) => setTimeout(r, 5000));
+          const runsResp = await fetch(`https://api.github.com/repos/${repo}/actions/runs?branch=${encodeURIComponent(branch)}&per_page=1`, {
+            headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' },
+          });
+          if (!runsResp.ok) continue;
+          const runsData = await runsResp.json();
+          run = runsData.workflow_runs?.[0];
+          if (!run) continue;
+
+          addLog(`Statut GitHub Actions : ${run.status}${run.conclusion ? ' (' + run.conclusion + ')' : ''}`);
+          if (run.status === 'completed') break;
+          setStepState(3, 'active', run.status);
+        }
+
+        if (!run || run.conclusion !== 'success') {
+          setStepState(3, 'error', run?.conclusion || 'Échec');
+          $('pipeline-status-badge').textContent = 'Échec du build';
+          addLog('La compilation macOS a échoué. Consultez les logs sur GitHub.', 'error');
+          showToast('Échec du build GitHub Actions', 'error');
+          return;
+        }
+
+        setStepState(3, 'done', 'Compilé');
+        setStepState(4, 'done', 'Artefact prêt');
+        $('pipeline-status-badge').textContent = 'Terminé';
+        state.lastRunUrl = run.html_url;
+
+        const artResp = await fetch(run.artifacts_url, {
+          headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' },
+        });
+        const artData = await artResp.json();
+        const artifact = artData.artifacts?.[0];
+        state.lastArtifactUrl = artifact?.archive_download_url || '';
+
+        $('ipa-filename').textContent = `${appName}-unsigned.ipa`;
+        $('ipa-meta').textContent = 'Compilation macOS terminée sur GitHub Actions.';
+        $('link-gh-run').href = run.html_url;
+        $('link-gh-run').classList.remove('hidden');
+        $('ipa-result-card').classList.remove('hidden');
+        addLog('Artefact .ipa disponible sur GitHub Actions !', 'success');
+        showToast('Compilation macOS réussie !', 'success');
+      } catch (err) {
+        setStepState(3, 'error', 'Erreur');
+        $('pipeline-status-badge').textContent = 'Erreur';
+        addLog(`Erreur : ${err.message}`, 'error');
+        showToast(err.message, 'error');
+      }
+    }
+
+    let CLEAN_TOOL_HTML = '';
+
+    // Event bindings
+    function init() {
+      CLEAN_TOOL_HTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const dropzone = $('dropzone');
+      const fileInput = $('file-input');
+
+      dropzone.addEventListener('click', () => fileInput.click());
+      dropzone.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          fileInput.click();
+        }
+      });
+
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('drop-active');
+      });
+      dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drop-active'));
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('drop-active');
+        if (e.dataTransfer?.files?.length) handleFiles(e.dataTransfer.files);
+      });
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files?.length) handleFiles(e.target.files);
+        e.target.value = '';
+      });
+
+      $('file-list').addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-remove]');
+        if (!btn) return;
+        const idx = Number(btn.dataset.remove);
+        state.files.splice(idx, 1);
+        renderFileList();
+        refreshGeneratedFiles();
+      });
+
+      $('btn-clear-files').addEventListener('click', () => {
+        state.files = [];
+        renderFileList();
+        refreshGeneratedFiles();
+        addLog('Liste des fichiers vidée.');
+      });
+
+      $('btn-load-demo').addEventListener('click', () => {
+        const demoHtml = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Compteur iOS</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #0f172a; color: #f8fafc; }
+    button { padding: 14px 28px; border-radius: 14px; border: 0; background: #38bdf8; color: #0f172a; font-weight: 700; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h1 id="val">0</h1>
+  <button onclick="document.getElementById('val').textContent++">+1</button>
+</body>
+</html>`;
+        state.files = [{ name: 'index.html', size: demoHtml.length, isText: true, content: demoHtml }];
+        renderFileList();
+        refreshGeneratedFiles();
+        addLog('Exemple index.html chargé.', 'success');
+        showToast('Exemple HTML chargé', 'success');
+      });
+
+      ['app-name', 'bundle-id', 'app-version', 'ios-target'].forEach((id) => {
+        $(id).addEventListener('input', () => refreshGeneratedFiles());
+      });
+
+      $('ai-provider').addEventListener('change', (e) => {
+        const badge = $('ai-badge');
+        badge.textContent = e.target.value === 'local' ? 'Mode local prêt' : `API ${e.target.value.toUpperCase()}`;
+      });
+
+      $('macos-runner').addEventListener('change', () => refreshGeneratedFiles());
+
+      $('sim-mode').addEventListener('change', (e) => {
+        $('github-fields').classList.toggle('opacity-60', e.target.checked);
+      });
+
+      $('signing-mode').addEventListener('change', (e) => {
+        const mode = e.target.value;
+        const guide = $('signing-secrets-guide');
+        const list = $('signing-secrets-list');
+        const buildBtn = $('btn-build-ipa');
+        if (mode === 'unsigned') {
+          guide.classList.add('hidden');
+          buildBtn.lastChild.textContent = ' Lancer le build macOS (.ipa non signée)';
+        } else if (mode === 'macos-vnc') {
+          $('macos-runner').value = 'macos-15';
+          guide.classList.remove('hidden');
+          list.innerHTML = '<div>• Installe et lance RustDesk sur le runner macOS (ID + mot de passe dans les logs)</div><div>• Optionnel : secret VNC_PASSWORD (défaut : IpaForge2026!)</div><div>• Connectez-vous avec RustDesk Portable → Xcode → Apple ID + 2FA → double-cliquez Terminer_et_Compiler.command</div>';
+          buildBtn.lastChild.textContent = ' Lancer macOS avec interface graphique (VNC)';
+        } else if (mode === 'apple-p12') {
+          guide.classList.remove('hidden');
+          list.innerHTML = '<div>• APPLE_P12_BASE64</div><div>• APPLE_P12_PASSWORD</div><div>• APPLE_PROVISION_BASE64</div><div>• APPLE_TEAM_ID</div>';
+          buildBtn.lastChild.textContent = ' Lancer le build macOS (.ipa signée .p12)';
+        } else {
+          guide.classList.remove('hidden');
+          list.innerHTML = '<div>• ASC_KEY_ID</div><div>• ASC_ISSUER_ID</div><div>• ASC_KEY_P8_BASE64</div><div>• APPLE_TEAM_ID</div>';
+          buildBtn.lastChild.textContent = ' Lancer le build macOS (.ipa signée API)';
+        }
+        refreshGeneratedFiles();
+      });
+
+      $('code-tabs').addEventListener('click', (e) => {
+        const btn = e.target.closest('.tab-btn');
+        if (!btn) return;
+        state.activeTab = btn.dataset.tab;
+        renderCodeTab();
+      });
+
+      $('btn-copy-code').addEventListener('click', async () => {
+        const text = state.generated[state.activeTab] || '';
+        try {
+          if (navigator.clipboard) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+          }
+          showToast('Code copié dans le presse-papiers', 'success');
+        } catch {
+          showToast('Impossible de copier automatiquement', 'warn');
+        }
+      });
+
+      $('btn-download-zip').addEventListener('click', async () => {
+        refreshGeneratedFiles();
+        const blob = await buildProjectZipBlob();
+        const appName = sanitizeAppName($('app-name').value);
+        triggerDownload(blob, `${appName}-ios-github.zip`);
+        addLog(`Archive ${appName}-ios-github.zip téléchargée.`, 'success');
+        showToast('Projet ZIP exporté', 'success');
+      });
+
+      async function extractIpaFromLastArtifact() {
+        const appName = sanitizeAppName($('app-name').value);
+        if ($('sim-mode').checked && state.demoIpaBlob) {
+          return { blob: state.demoIpaBlob, name: `${appName}-unsigned.ipa`, isZipFallback: false };
+        }
+        if (!state.lastArtifactUrl) {
+          throw new Error('Aucun artefact disponible.');
+        }
+        const token = $('gh-token').value.trim();
+        addLog('Téléchargement de l’artefact GitHub (.zip) et extraction du .ipa...');
+        const resp = await fetch(state.lastArtifactUrl, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const zipBuffer = await resp.arrayBuffer();
+        const outerZip = await JSZip.loadAsync(zipBuffer);
+        const ipaEntry = Object.values(outerZip.files).find(
+          (entry) => !entry.dir && entry.name.toLowerCase().endsWith('.ipa')
+        );
+        if (ipaEntry) {
+          const ipaBytes = await ipaEntry.async('blob');
+          return {
+            blob: new Blob([ipaBytes], { type: 'application/octet-stream' }),
+            name: ipaEntry.name.split('/').pop() || `${appName}-unsigned.ipa`,
+            isZipFallback: false,
+          };
+        }
+        return {
+          blob: new Blob([zipBuffer], { type: 'application/zip' }),
+          name: `${appName}-unsigned-artifact.zip`,
+          isZipFallback: true,
+        };
+      }
+
+      $('btn-download-ipa').addEventListener('click', async () => {
+        const btn = $('btn-download-ipa');
+        const prevLabel = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Extraction du .ipa…';
+        try {
+          const { blob, name, isZipFallback } = await extractIpaFromLastArtifact();
+          triggerDownload(blob, name);
+          if (isZipFallback) {
+            addLog('Aucun .ipa trouvé dans l’archive, téléchargement du .zip brut.', 'warn');
+            showToast('Aucun .ipa trouvé, archive .zip téléchargée.', 'warn');
+          } else {
+            addLog(`${name} extrait et téléchargé directement.`, 'success');
+            showToast(`${name} téléchargé !`, 'success');
+          }
+        } catch (err) {
+          addLog(`Erreur téléchargement/extraction : ${err.message}`, 'error');
+          showToast(`Téléchargez depuis GitHub : ${err.message}`, 'warn');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = prevLabel;
+        }
+      });
+
+      $('btn-share-ipa').addEventListener('click', async () => {
+        const btn = $('btn-share-ipa');
+        const prevLabel = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Préparation…';
+        try {
+          const { blob, name } = await extractIpaFromLastArtifact();
+          const ipaFile = new File([blob], name, { type: 'application/octet-stream' });
+          if (navigator.canShare && navigator.canShare({ files: [ipaFile] })) {
+            await navigator.share({
+              files: [ipaFile],
+              title: name,
+              text: 'Ouvrir dans AltStore, SideStore ou TrollStore',
+            });
+            addLog(`${name} envoyé vers la feuille de partage iOS.`, 'success');
+          } else {
+            triggerDownload(blob, name);
+            showToast('Partage natif non supporté sur ce navigateur : fichier téléchargé (utilisez AltServer/Sideloadly sur PC/Mac).', 'info');
+          }
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            showToast(`Partage impossible : ${err.message}`, 'warn');
+          }
+        } finally {
+          btn.disabled = false;
+          btn.textContent = prevLabel;
+        }
+      });
+
+      const launchSideloadScheme = (scheme) => {
+        const url = $('sideload-ipa-url').value.trim();
+        if (!url || !url.startsWith('https://')) {
+          showToast('Collez une URL HTTPS valide vers le fichier .ipa.', 'warn');
+          return;
+        }
+        window.location.href = `${scheme}://install?url=${encodeURIComponent(url)}`;
+      };
+      $('btn-open-sidestore').addEventListener('click', () => launchSideloadScheme('sidestore'));
+      $('btn-open-altstore').addEventListener('click', () => launchSideloadScheme('altstore'));
+
+      $('btn-convert').addEventListener('click', runAiConversion);
+      $('btn-build-ipa').addEventListener('click', startMacOsBuild);
+
+      const closePagesModal = () => $('gh-pages-modal').classList.add('hidden');
+      $('btn-open-pages-modal').addEventListener('click', () => {
+        if (!$('pages-token').value && $('gh-token').value) {
+          $('pages-token').value = $('gh-token').value;
+        }
+        $('gh-pages-modal').classList.remove('hidden');
+      });
+      $('btn-close-pages-modal').addEventListener('click', closePagesModal);
+      $('btn-cancel-pages').addEventListener('click', closePagesModal);
+
+      $('btn-download-index-html').addEventListener('click', () => {
+        const blob = new Blob([CLEAN_TOOL_HTML], { type: 'text/html;charset=utf-8' });
+        triggerDownload(blob, 'index.html');
+        showToast('index.html téléchargé', 'success');
+      });
+
+      $('btn-publish-pages').addEventListener('click', async () => {
+        const repoName = ($('pages-repo-name').value || 'ipa-forge').trim().replace(/[^a-zA-Z0-9._-]/g, '-');
+        const token = $('pages-token').value.trim();
+        const errBox = $('pages-error');
+        const resBox = $('pages-result');
+        errBox.classList.add('hidden');
+        resBox.classList.add('hidden');
+
+        if (!token) {
+          errBox.textContent = 'Entrez votre token GitHub (PAT).';
+          errBox.classList.remove('hidden');
+          return;
+        }
+        const btn = $('btn-publish-pages');
+        btn.disabled = true;
+        btn.textContent = 'Publication…';
+        try {
+          const ghHeaders = {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/vnd.github+json',
+          };
+          const userResp = await fetch('https://api.github.com/user', { headers: ghHeaders });
+          if (!userResp.ok) {
+            const msg = await userResp.text();
+            throw new Error(`Authentification GitHub refusée (${userResp.status}) : ${msg.slice(0, 140)}`);
+          }
+          const user = await userResp.json();
+          const fullRepo = `${user.login}/${repoName}`;
+          let targetBranch = 'main';
+
+          const repoCheck = await fetch(`https://api.github.com/repos/${fullRepo}`, { headers: ghHeaders });
+          if (repoCheck.status === 404) {
+            const createResp = await fetch('https://api.github.com/user/repos', {
+              method: 'POST',
+              headers: { ...ghHeaders, 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name: repoName,
+                private: false,
+                auto_init: true,
+                description: 'IPA Forge - Interface web de conversion & compilation iOS',
+              }),
+            });
+            if (!createResp.ok) {
+              const msg = await createResp.text();
+              throw new Error(`Création du dépôt refusée (${createResp.status}) : ${msg.slice(0, 140)}`);
+            }
+            const created = await createResp.json();
+            targetBranch = created.default_branch || 'main';
+            await new Promise((r) => setTimeout(r, 1200));
+          } else if (repoCheck.ok) {
+            const existingRepo = await repoCheck.json();
+            targetBranch = existingRepo.default_branch || 'main';
+          }
+
+          await githubPutFile(fullRepo, targetBranch, token, 'index.html', CLEAN_TOOL_HTML);
+
+          const pagesCheck = await fetch(`https://api.github.com/repos/${fullRepo}/pages`, { headers: ghHeaders });
+          let liveUrl = `https://${user.login}.github.io/${repoName}/`;
+          if (pagesCheck.status === 404) {
+            await new Promise((r) => setTimeout(r, 1000));
+            const pagesResp = await fetch(`https://api.github.com/repos/${fullRepo}/pages`, {
+              method: 'POST',
+              headers: { ...ghHeaders, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ source: { branch: targetBranch, path: '/' } }),
+            });
+            if (!pagesResp.ok && pagesResp.status !== 409) {
+              const msg = await pagesResp.text();
+              throw new Error(`index.html poussé sur ${fullRepo}, mais activation Pages impossible (${pagesResp.status}) : ${msg.slice(0, 140)}`);
+            }
+            if (pagesResp.ok) {
+              const pagesData = await pagesResp.json();
+              if (pagesData.html_url) liveUrl = pagesData.html_url;
+            }
+          } else if (pagesCheck.ok) {
+            const pagesData = await pagesCheck.json();
+            if (pagesData.html_url) liveUrl = pagesData.html_url;
+          }
+
+          $('pages-live-url').href = liveUrl;
+          $('pages-live-url').textContent = liveUrl;
+          resBox.classList.remove('hidden');
+          addLog(`Outil publié sur GitHub Pages : ${liveUrl}`, 'success');
+          showToast('Outil publié sur GitHub Pages !', 'success');
+        } catch (err) {
+          errBox.textContent = err.message;
+          errBox.classList.remove('hidden');
+          addLog(`Erreur publication GitHub Pages : ${err.message}`, 'error');
+          showToast('Échec de la publication', 'error');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Publier maintenant';
+        }
+      });
+
+      refreshGeneratedFiles();
+      renderLogs();
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+
+</body></html>
