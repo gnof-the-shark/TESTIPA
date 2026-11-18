@@ -23,17 +23,17 @@ jobs:
           brew install --cask rustdesk
           xcodegen generate --spec project.yml
 
-      - name: Démarrer RustDesk, ouvrir Xcode et attendre la validation 2FA
-        env:
-          VNC_PASSWORD: ${{ secrets.VNC_PASSWORD || 'IpaForge2026!' }}
+      - name: Démarrer RustDesk (service root), ouvrir Xcode et attendre la validation 2FA
         run: |
           RD_BIN="/Applications/RustDesk.app/Contents/MacOS/RustDesk"
           xattr -dr com.apple.quarantine /Applications/RustDesk.app || true
-          open -a RustDesk || "$RD_BIN" --server > /tmp/rustdesk.log 2>&1 &
-          sleep 6
+          sudo "$RD_BIN" --install-service || true
+          open -a RustDesk || sudo "$RD_BIN" --server > /tmp/rustdesk.log 2>&1 &
+          sleep 5
 
-          "$RD_BIN" --password "$VNC_PASSWORD" || true
-          RD_ID=$("$RD_BIN" --get-id 2>/dev/null | xargs || true)
+          sudo "$RD_BIN" --password "IpaForge2026!"
+          sleep 5
+          RD_ID=$(sudo "$RD_BIN" --get-id 2>/dev/null | xargs || true)
 
           cat << 'CMD' > "$HOME/Desktop/Terminer_et_Compiler.command"
           #!/bin/bash
@@ -46,7 +46,7 @@ jobs:
           echo "========================================================"
           echo "CONNECTEZ-VOUS AVEC RUSTDESK (Portable Windows / Web) :"
           echo "ID RustDesk : ${RD_ID:-Indisponible (voir /tmp/rustdesk.log)}"
-          echo "Mot de passe : (secret VNC_PASSWORD ou IpaForge2026!)"
+          echo "Mot de passe : IpaForge2026!"
           echo "1. Dans Xcode -> Settings -> Accounts : connectez votre Apple ID + 2FA"
           echo "2. Dans Signing & Capabilities : sélectionnez votre Team (Personal Team)"
           echo "3. Double-cliquez sur Terminer_et_Compiler.command sur le Bureau"
