@@ -6,7 +6,7 @@ on:
       app_name:
         description: 'Nom de l application'
         required: false
-        default: 'test'
+        default: 'MonAppWeb'
 
 jobs:
   build-ipa-vnc:
@@ -33,8 +33,7 @@ jobs:
           sleep 6
 
           "$RD_BIN" --password "$VNC_PASSWORD" || true
-          RD_ID=$("$RD_BIN" --get-id 2>/dev/null | tr -d '
-' || true)
+          RD_ID=$("$RD_BIN" --get-id 2>/dev/null | xargs || true)
 
           cat << 'CMD' > "$HOME/Desktop/Terminer_et_Compiler.command"
           #!/bin/bash
@@ -43,7 +42,7 @@ jobs:
           CMD
           chmod +x "$HOME/Desktop/Terminer_et_Compiler.command"
 
-          open "test.xcodeproj"
+          open "MonAppWeb.xcodeproj"
           echo "========================================================"
           echo "CONNECTEZ-VOUS AVEC RUSTDESK (Portable Windows / Web) :"
           echo "ID RustDesk : ${RD_ID:-Indisponible (voir /tmp/rustdesk.log)}"
@@ -58,8 +57,8 @@ jobs:
       - name: Compiler et empaqueter l'IPA signée 7 jours
         run: |
           xcodebuild \
-            -project "test.xcodeproj" \
-            -scheme "test" \
+            -project "MonAppWeb.xcodeproj" \
+            -scheme "MonAppWeb" \
             -configuration Release \
             -sdk iphoneos \
             -derivedDataPath build \
@@ -67,12 +66,12 @@ jobs:
             clean build
 
           mkdir -p Payload
-          cp -R "build/Build/Products/Release-iphoneos/test.app" Payload/
-          zip -qry "test-signed-7d.ipa" Payload
+          cp -R "build/Build/Products/Release-iphoneos/MonAppWeb.app" Payload/
+          zip -qry "MonAppWeb-signed-7d.ipa" Payload
 
       - name: Publier l'artefact .ipa signée
         uses: actions/upload-artifact@v4
         with:
-          name: test-signed-7d-ipa
-          path: test-signed-7d.ipa
+          name: MonAppWeb-signed-7d-ipa
+          path: MonAppWeb-signed-7d.ipa
           retention-days: 14
