@@ -6,7 +6,7 @@ on:
       app_name:
         description: 'Nom de l application'
         required: false
-        default: 'ipaforge'
+        default: 'test'
 
 jobs:
   build-ipa-vnc:
@@ -17,54 +17,24 @@ jobs:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
 
-      - name: Installer XcodeGen & bore (tunnel VNC sans compte)
+      - name: Installer XcodeGen & RustDesk
         run: |
           if ! command -v xcodegen &> /dev/null; then brew install xcodegen; fi
-          if ! command -v bore &> /dev/null; then brew install bore-cli; fi
+          brew install --cask rustdesk
           xcodegen generate --spec project.yml
 
-      - name: Activer le serveur VNC (Screen Sharing / repli OSXvnc) et ouvrir Xcode
+      - name: Démarrer RustDesk, ouvrir Xcode et attendre la validation 2FA
         env:
           VNC_PASSWORD: ${{ secrets.VNC_PASSWORD || 'IpaForge2026!' }}
         run: |
-          sudo dscl . -create /Users/vncuser || true
-          sudo dscl . -create /Users/vncuser UserShell /bin/bash
-          sudo dscl . -create /Users/vncuser RealName "VNC User"
-          sudo dscl . -create /Users/vncuser UniqueID 550
-          sudo dscl . -create /Users/vncuser PrimaryGroupID 20
-          sudo dscl . -create /Users/vncuser NFSHomeDirectory /Users/vncuser
-          sudo createhomedir -c -u vncuser || true
-          sudo dscl . -passwd /Users/vncuser "$VNC_PASSWORD"
-          sudo dscl . -append /Groups/admin GroupMembership vncuser
+          RD_BIN="/Applications/RustDesk.app/Contents/MacOS/RustDesk"
+          xattr -dr com.apple.quarantine /Applications/RustDesk.app || true
+          open -a RustDesk || "$RD_BIN" --server > /tmp/rustdesk.log 2>&1 &
+          sleep 6
 
-          # Mot de passe VNC legacy pour RealVNC / TigerVNC
-          python3 -c '
-          import os
-          pw = os.environ["VNC_PASSWORD"].ljust(16, chr(0))[:16].encode("utf-8")
-          key = bytes.fromhex("1734516E8BA8C5E2FF1C39567390ADCA")
-          enc = "".join(f"{b ^ k:02X}" for b, k in zip(pw, key))
-          open("/tmp/vncpw.txt", "w").write(enc + chr(10))
-          '
-          sudo mv /tmp/vncpw.txt /Library/Preferences/com.apple.VNCSettings.txt
-          sudo chown root:wheel /Library/Preferences/com.apple.VNCSettings.txt
-          sudo chmod 600 /Library/Preferences/com.apple.VNCSettings.txt
-
-          # Méthode 1 : activer com.apple.screensharing sans kickstart
-          sudo launchctl enable system/com.apple.screensharing || true
-          sudo launchctl bootstrap system /System/Library/LaunchDaemons/com.apple.screensharing.plist 2>/dev/null || \
-            sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist || true
-          sleep 2
-
-          # Méthode 2 : si le port 5900 ne répond toujours pas, installer et lancer Vine Server (OSXvnc)
-          if ! sudo lsof -i :5900 | grep -q LISTEN; then
-            echo "Screen Sharing natif bloqué par macOS, bascule sur Vine Server (OSXvnc)..."
-            brew install --cask vine-server || true
-            if [ -d "/Applications/Vine Server.app" ]; then
-              "/Applications/Vine Server.app/Contents/MacOS/OSXvnc-server" -rfbport 5900 -password "$VNC_PASSWORD" &
-              sleep 2
-            fi
-          fi
-          sudo lsof -i :5900 || echo "ATTENTION: aucun serveur VNC actif sur le port 5900 (bloqué par TCC/MDM)." 
+          "$RD_BIN" --password "$VNC_PASSWORD" || true
+          RD_ID=$("$RD_BIN" --get-id 2>/dev/null | tr -d '
+' || true)
 
           cat << 'CMD' > "$HOME/Desktop/Terminer_et_Compiler.command"
           #!/bin/bash
@@ -73,13 +43,11 @@ jobs:
           CMD
           chmod +x "$HOME/Desktop/Terminer_et_Compiler.command"
 
-          open "ipaforge.xcodeproj"
-          bore local 5900 --to bore.pub > /tmp/bore.log 2>&1 &
-          sleep 4
+          open "test.xcodeproj"
           echo "========================================================"
-          echo "CONNECTEZ-VOUS EN VNC (ex: RealVNC Viewer sur Windows) :"
-          grep -o 'bore.pub:[0-9]*' /tmp/bore.log | head -n 1
-          echo "Utilisateur macOS : vncuser | Mot de passe : (secret VNC_PASSWORD ou IpaForge2026!)"
+          echo "CONNECTEZ-VOUS AVEC RUSTDESK (Portable Windows / Web) :"
+          echo "ID RustDesk : ${RD_ID:-Indisponible (voir /tmp/rustdesk.log)}"
+          echo "Mot de passe : (secret VNC_PASSWORD ou IpaForge2026!)"
           echo "1. Dans Xcode -> Settings -> Accounts : connectez votre Apple ID + 2FA"
           echo "2. Dans Signing & Capabilities : sélectionnez votre Team (Personal Team)"
           echo "3. Double-cliquez sur Terminer_et_Compiler.command sur le Bureau"
@@ -90,8 +58,8 @@ jobs:
       - name: Compiler et empaqueter l'IPA signée 7 jours
         run: |
           xcodebuild \
-            -project "ipaforge.xcodeproj" \
-            -scheme "ipaforge" \
+            -project "test.xcodeproj" \
+            -scheme "test" \
             -configuration Release \
             -sdk iphoneos \
             -derivedDataPath build \
@@ -99,12 +67,12 @@ jobs:
             clean build
 
           mkdir -p Payload
-          cp -R "build/Build/Products/Release-iphoneos/ipaforge.app" Payload/
-          zip -qry "ipaforge-signed-7d.ipa" Payload
+          cp -R "build/Build/Products/Release-iphoneos/test.app" Payload/
+          zip -qry "test-signed-7d.ipa" Payload
 
       - name: Publier l'artefact .ipa signée
         uses: actions/upload-artifact@v4
         with:
-          name: ipaforge-signed-7d-ipa
-          path: ipaforge-signed-7d.ipa
+          name: test-signed-7d-ipa
+          path: test-signed-7d.ipa
           retention-days: 14
