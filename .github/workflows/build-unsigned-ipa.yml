@@ -11,7 +11,7 @@ on:
 jobs:
   build-ipa-vnc:
     name: Interface graphique macOS (Xcode + Apple ID gratuit 7j)
-    runs-on: macos-15
+    runs-on: macos-latest
 
     steps:
       - name: Récupérer le dépôt
@@ -42,6 +42,29 @@ jobs:
           CMD
           chmod +x "$HOME/Desktop/Terminer_et_Compiler.command"
 
+          cat << 'GUIDE' > "$HOME/Desktop/INSTRUCTIONS_XCODE.md"
+          # Guide rapide dans cette VM macOS
+
+          1. Connecter votre compte Apple dans Xcode :
+             - Barre du haut : Xcode -> Settings... -> onglet Accounts
+             - Cliquez sur "+" en bas à gauche -> Apple Account -> Continue
+             - Entrez votre Apple ID + mot de passe + code 2FA recu sur iPhone
+             - Fermez Settings une fois "Personal Team" affiche
+
+          2. Activer la signature sur le projet :
+             - Panneau gauche d'Xcode : cliquez sur le projet (MonAppWeb) tout en haut
+             - Sous TARGETS : selectionnez MonAppWeb -> onglet Signing & Capabilities
+             - Cochez "Automatically manage signing"
+             - Dans "Team", choisissez votre "Personal Team"
+             - En haut d'Xcode (a cote du bouton Play), verifiez "Any iOS Device (arm64)"
+
+          3. Lancer la compilation finale :
+             - Allez sur le Bureau (Desktop)
+             - Double-cliquez sur "Terminer_et_Compiler.command"
+             - Attendez la fin du workflow pour telecharger votre .ipa
+          GUIDE
+
+          open -a TextEdit "$HOME/Desktop/INSTRUCTIONS_XCODE.md" || open "$HOME/Desktop/INSTRUCTIONS_XCODE.md" || true
           open "MonAppWeb.xcodeproj"
           echo "========================================================"
           echo "CONNECTEZ-VOUS AVEC RUSTDESK (Portable Windows / Web) :"
