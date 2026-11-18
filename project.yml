@@ -1,11 +1,11 @@
-name: IPATEST
+name: ipaforge
 options:
   bundleIdPrefix: com.gnof
   deploymentTarget:
     iOS: "16.0"
 
 targets:
-  IPATEST:
+  ipaforge:
     type: application
     platform: iOS
     deploymentTarget: "16.0"
